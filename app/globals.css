@@ -1,26 +1,47 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary-accent: #d4af37;
+  --color-primary: #1e293b;
+  --color-primary-light: #475569;
+  --color-primary-lighter: #94a3b8;
+  --color-secondary-bg: #f9fafb;
+  --color-paragraph-light:#9ca3af;
+  --text-h1: clamp(2rem, 1.2083rem + 3.9583vw, 4.375rem);
+  --text-h2: clamp(1.25rem, 0.7708rem + 2.3958vw, 2.6875rem);
+  --text-subtitle: clamp(0.75rem, 0.6667rem + 0.4167vw, 1rem);
+  --text-paragraph: clamp(1rem, 2.5vw, 1.25rem);
+
+  
+--animate-marquee: marquee 20s infinite linear;
+--animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  /* always reserve vertical scrollbar space on the right,
+     so toggling overflow:hidden never shifts your layout */
+  scrollbar-gutter: stable both-edges;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.text-subtitle {
+  font-size: var(--text-subtitle);
+  @apply font-semibold tracking-widest text-primary-accent;
+}
+.text-h1 {
+  font-size: var(--text-h1);
+  @apply font-bold  leading-[1.2];
+}
+.text-h2 {
+  font-size: var(--text-h2);
+  @apply font-bold text-black leading-[1.1];
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.text-paragraph {
+  @apply text-paragraph-light text-lg;
+}
+
+.text-gradient {
+  @apply bg-gradient-to-tr from-primary-light via-primary-lighter to-primary-lighter bg-clip-text text-transparent;
 }
