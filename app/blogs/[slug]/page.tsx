@@ -25,7 +25,7 @@ export default async function BlogPage({
   params,
 }: {
   // In Next.js 15+, params can be a Promise or an object
-  params: Promise<{ slug: string }> | { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
   const blog: Blog | undefined = blogs.find((b) => b.slug === slug);
