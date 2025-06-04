@@ -56,7 +56,7 @@ export default function ContactPage() {
                     <line x1="12" y1="22.08" x2="12" y2="12"></line>
                   </svg>
                 </div>
-                <h3 className="text-3xl ">Sales Inquiries</h3>
+                <h3 className="text-xl md:text-3xl font-semibold ">Sales Inquiries</h3>
                 <p className="text-paragraph">
                   Questions about bulk orders, pricing, or partnerships? Our
                   Sales team is happy to assist.
@@ -92,7 +92,7 @@ export default function ContactPage() {
                     ></path>
                   </svg>
                 </div>
-                <h3 className="text-3xl ">Customer Support</h3>
+                <h3 className="text-xl md:text-3xl font-semibold ">Customer Support</h3>
                 <p className="text-paragraph">
                   Need technical assistance or help with your order? Contact our Support team and we’ll get back to you promptly.
                 </p>
@@ -123,7 +123,7 @@ export default function ContactPage() {
                     <path d="M20 4h-3.17L15 2H9L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h4.05l1.83-2h4.24l1.83 2H20v12zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"></path>
                   </svg>
                 </div>
-                <h3 className="text-3xl ">Influencer Partnerships</h3>
+                <h3 className="text-xl md:text-3xl font-semibold ">Influencer Partnerships</h3>
                 <p className="text-paragraph">
                   Interested in collaborating? Reach out to our Influencer team to discuss partnership opportunities.
                 </p>

@@ -27,7 +27,7 @@ export default function BlogCard({
         />
       </div>
       <div className="p-4 bg-white">
-        <h2 className="text-2xl font-semibold mb-2  group-hover:text-primary-accent ">
+        <h2 className="text-2xl font-semibold mb-2 line-clamp-2 group-hover:text-primary-accent ">
           {blog.title}
         </h2>
         <p className="text-sm text-neutral-500 mb-2">

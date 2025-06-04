@@ -20,7 +20,7 @@ function AccordionItem({
     <AccordionPrimitive.Item
       data-slot="accordion-item"
       className={cn(
-        "border rounded-3xl data-[state=open]:border-primary-accent px-4 py-3 border-primary-lighter ",
+        " data-[state=open]:border-primary-accent px-4 py-3 shadow-sm rounded-md",
         className
       )}
       {...props}

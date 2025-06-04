@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
 import useLazyLoad from "./useLazyLoad";
-import "swiper/css";
-import "swiper/css/effect-cards";
+
 
 export function useLazySwiper() {
   const { ref, isInView } = useLazyLoad();
@@ -18,7 +17,7 @@ export function useLazySwiper() {
       });
 
       import("swiper/modules").then((module) => {
-        setModules([module.EffectCards]);
+        setModules([module.Pagination,module.Navigation]);
       });
     }
   

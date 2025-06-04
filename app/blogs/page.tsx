@@ -1,11 +1,12 @@
 // app/blogs/page.tsx
 
-import { Blog, blogs } from "@/constants/blogsData";
+import {  blogs } from "@/constants/blogsData";
 import { Container } from "@/components/shared/Container";
 import GlareCTA from "@/components/shared/GlareCTA";
 import BlogCard from "@/components/blogs/BlogCard";
 import LatestBlogCard from "@/components/blogs/LatestBlogCard";
 import { FadeIn, FadeInStagger } from "@/components/shared/FadeIn";
+import BlogsSwiper from "@/components/blogs/BlogsSwiper";
 
 export default function BlogListPage() {
   // Destructure out the 3 newest posts (assumes `blogs` is sorted newest → oldest)
@@ -56,13 +57,14 @@ export default function BlogListPage() {
         </div>
 
         {/*** The Rest of the Blogs ***/}
-        {rest.length > 0 && (
+        {/* {rest.length > 0 && (
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((blog: Blog) => (
               <BlogCard key={blog.slug} blog={blog} />
             ))}
           </div>
-        )}
+        )} */}
+        <BlogsSwiper blogs={rest}/>
 
         <GlareCTA />
       </Container>

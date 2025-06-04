@@ -7,7 +7,7 @@ import { useMotionTemplate, useMotionValue, m } from "motion/react"
 export type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(({ className, ...props }, ref) => {
-  const radius = 100 // change this to increase the radius of the hover effect
+  const radius = 200 // change this to increase the radius of the hover effect
   const [visible, setVisible] = React.useState(false)
 
   const mouseX = useMotionValue(0)
@@ -35,7 +35,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(({ classNa
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setVisible(true)}
       onMouseLeave={() => setVisible(false)}
-      className="group/textarea rounded-lg p-[2px] transition duration-300"
+      className="group/textarea rounded-lg p-[4px] transition duration-300"
     >
       <textarea
         className={cn(

@@ -6,7 +6,7 @@ import { useMotionTemplate, useMotionValue, m } from "motion/react"
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement>
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type, ...props }, ref) => {
-  const radius = 100 // change this to increase the rdaius of the hover effect
+  const radius = 200 // change this to increase the rdaius of the hover effect
   const [visible, setVisible] = React.useState(false)
 
   const mouseX = useMotionValue(0)
@@ -33,7 +33,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type,
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setVisible(true)}
       onMouseLeave={() => setVisible(false)}
-      className="group/input rounded-lg p-[2px] transition duration-300"
+      className="group/input rounded-lg p-[4px] transition duration-300"
     >
       <input
         type={type}

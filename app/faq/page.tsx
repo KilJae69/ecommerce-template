@@ -1,4 +1,5 @@
 import { Container } from "@/components/shared/Container";
+import GlareCTA from "@/components/shared/GlareCTA";
 import {
   Accordion,
   AccordionContent,
@@ -28,7 +29,7 @@ export default function FaqPage() {
             <TabsList className="flex justify-between gap-4 flex-wrap w-full">
               {faqData.map((category) => (
                 <TabsTrigger
-                  className="text-lg md:text-2xl group relative overflow-hidden"
+                  className="text-md py-3 font-bold group relative overflow-hidden"
                   key={category.id}
                   value={category.id}
                 >
@@ -70,6 +71,8 @@ export default function FaqPage() {
             ))}
           </Tabs>
         </div>
+
+        <GlareCTA/>
       </Container>
     </section>
   );
