@@ -17,6 +17,38 @@
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
 }
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+   height: 3px; 
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #1e293b;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+  opacity: 0.5;
+}
+
 .text-subtitle {
   font-size: var(--text-subtitle);
   @apply font-semibold tracking-widest text-primary-accent;
@@ -40,10 +72,6 @@
 
 /* Swiper Styles */
 
-.swiper {
-  padding-inline: 38px !important;
-}
-
 .swiper-pagination {
   transform: translateY(10px) !important;
 }
@@ -58,7 +86,6 @@
 
 .swiper-button-prev {
   color: #d4af37 !important;
-
 }
 .swiper-button-next {
   color: #d4af37 !important;

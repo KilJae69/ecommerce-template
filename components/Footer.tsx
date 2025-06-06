@@ -10,7 +10,7 @@ import { footerConfig } from "@/constants/footerConfig";
 export default function Footer() {
 
   return (
-    <footer className="mt-auto">
+    <footer className="mt-auto relative z-100">
       <div className="pt-12 lg:pt-24 pb-10 bg-primary">
         <Container>
           <div className="flex flex-col md:flex-row gap-8  text-white">

@@ -2,14 +2,12 @@
 
 import React from "react";
 
-import Image from "next/image";
+// import Image from "next/image";
 
 import { useLazySwiper } from "@/lib/hooks/useLazySwiper";
 import { Blog } from "@/constants/blogsData";
 import BlogCard from "./BlogCard";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+
 
 export default function BlogsSwiper({ blogs }: { blogs: Blog[] }) {
   const { ref, SwiperComponent, SwiperSlideComponent, modules } =
@@ -22,7 +20,7 @@ export default function BlogsSwiper({ blogs }: { blogs: Blog[] }) {
           pagination={{
             clickable: true,
           }}
-          navigation={true}
+        //   navigation={true}
           slidesPerView={1}
           breakpoints={{
             640: {
@@ -41,12 +39,12 @@ export default function BlogsSwiper({ blogs }: { blogs: Blog[] }) {
           spaceBetween={30}
           grabCursor={true}
           modules={modules}
-          className=" size-full px-10 h-[450px] "
+          className=" size-full h-[450px] "
         >
           {blogs.map((item) => (
             <SwiperSlideComponent
               key={item.title}
-              className="relative py-3  cursor-grab"
+              className="relative p-2  cursor-grab"
             >
               <BlogCard blog={item} className="h-[400px] hover:shadow-lg " />
             </SwiperSlideComponent>
@@ -62,16 +60,22 @@ export default function BlogsSwiper({ blogs }: { blogs: Blog[] }) {
 // 2) One single skeleton placeholder
 function Skeleton() {
   return (
-    <div
-      className="flex items-center justify-center w-[280px] h-[450px]
-                    sm:w-[400px] md:w-[300px] lg:w-[500px] "
-    >
-      <Image
-        src="/bouncing-circles.svg"
-        width={100}
-        height={100}
-        alt="Loading"
-      />
+    <div className="w-full h-[420px] overflow-hidden">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {Array.from({ length: 3 }).map((_, idx) => (
+          <div
+            key={idx}
+            className="group relative block overflow-hidden h-[400px] bg-white rounded-lg shadow animate-pulse"
+          >
+            <div className="bg-gray-200 h-48 w-full rounded-t-lg" />
+            <div className="p-4 space-y-4">
+              <div className="h-6 bg-gray-200 rounded w-3/4" />
+              <div className="h-4 bg-gray-200 rounded w-1/2" />
+              <div className="h-4 bg-gray-200 rounded w-full" />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

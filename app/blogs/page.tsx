@@ -17,7 +17,7 @@ export default function BlogListPage() {
       <Container>
         {/* Page Header */}
         <div className="max-w-4xl mx-auto text-center mb-12">
-          <h1 className="text-h1 text-gradient mb-4">Discover Our Latest Insights</h1>
+          <h1 className="text-h1 text-gradient mb-4 ">Discover Our Latest Insights</h1>
           <p className="text-paragraph">
             Dive into expert advice, trend reports, and in‐depth guides to keep
             your sneaker game on point.

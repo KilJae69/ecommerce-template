@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { domAnimation, LazyMotion } from "motion/react";
 import InnerLayout from "@/components/InnerLayout";
+import { CounterStoreProvider } from "@/providers/counter-store-provider";
 
 const poppins = Poppins({
   subsets: ["latin"], // Choose language subsets as needed
@@ -22,15 +23,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
   return (
     <html lang="en" className="h-full">
-      <body className={`${poppins.className} antialiased flex min-h-full flex-col `}>
-     
-          <LazyMotion features={domAnimation}>
+      <body
+        className={`${poppins.className} antialiased flex min-h-full flex-col `}
+      >
+        <LazyMotion features={domAnimation}>
+          <CounterStoreProvider>
             <InnerLayout>{children}</InnerLayout>
-          </LazyMotion>
-       
+          </CounterStoreProvider>
+        </LazyMotion>
       </body>
     </html>
   );
