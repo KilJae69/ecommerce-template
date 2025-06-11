@@ -147,6 +147,7 @@ export default function Header() {
                 src="/logo.png"
                 className="object-contain"
                 fill
+                priority
                 alt="logo"
               />
             </div>
