@@ -26,7 +26,7 @@ export default function ProductsGridClient() {
                     src={product.variants[0].images[0]}
                     alt={product.name}
                     fill
-                    priority={index === 0}
+                    priority={index < 2}
                     className="object-cover"
                   />
                 </div>
