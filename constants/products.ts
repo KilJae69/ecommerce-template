@@ -15,7 +15,7 @@ interface FilterParams {
 
 export async function getFilteredProducts(params: FilterParams) {
   // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 100));
+
 
   // Parse filter params
   const selectedBrands = params.brands?.split(",") || [];

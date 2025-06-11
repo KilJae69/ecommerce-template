@@ -1,7 +1,7 @@
 // app/collections/page.tsx
 
 import React from "react";
-
+import { Suspense } from "react";
 import CollectionsPageClientWrapper from "@/components/products-page/CollectionsPageClientWrapper";
 import ProductsGrid from "@/components/products-page/ProductsGrid";
 import { getFilteredProducts } from "@/constants/products";
@@ -31,7 +31,10 @@ export default async function CollectionsPage({
   return (
     <section className="relative pb-12 mt-42 lg:pb-24">
       <CollectionsPageClientWrapper totalCount={totalCount}>
-        <ProductsGrid filteredProducts={products}/>
+        <Suspense fallback={<div>Loading products…</div>}>
+          {/* Child server component that fetches & renders your grid */}
+          <ProductsGrid filteredProducts={products} />
+        </Suspense>
       </CollectionsPageClientWrapper>
     </section>
   );
