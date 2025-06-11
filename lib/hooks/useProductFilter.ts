@@ -1,15 +1,22 @@
 // hooks/useProductFilter.ts
-"use client"
+"use client";
 import { dummyProducts } from "@/constants/productsData";
 import { useSearchParams } from "next/navigation";
-
 import { useMemo } from "react";
 
-export function useProductFilter() {
+type FilterResults = {
+  products: typeof dummyProducts;
+  totalCount: number;
+  totalResults: number;
+  hasFilters: boolean;
+};
+
+export function useProductFilter(): FilterResults {
   const searchParams = useSearchParams();
 
-  const filteredProducts = useMemo(() => {
+  return useMemo(() => {
     // Get all filter params from URL
+    const query = searchParams.get("query")?.trim().toLowerCase() || "";
     const selectedBrands = searchParams.get("brands")?.split(",") || [];
     const selectedSizes = searchParams.get("sizes")?.split(",") || [];
     const selectedColors = searchParams.get("colors")?.split(",") || [];
@@ -18,8 +25,25 @@ export function useProductFilter() {
     const maxPrice = Number(searchParams.get("maxPrice")) || 500;
     const sort = searchParams.get("sort");
 
+    // Check if any filters are active
+    const hasFilters = Boolean(
+      query ||
+      selectedBrands.length > 0 ||
+      selectedSizes.length > 0 ||
+      selectedColors.length > 0 ||
+      selectedGenders.length > 0 ||
+      minPrice > 0 ||
+      maxPrice < 500 ||
+      sort
+    );
+
     // Filter products
     const results = dummyProducts.filter(product => {
+      // Search query filter
+      if (query && !product.name.toLowerCase().includes(query)) {
+        return false;
+      }
+      
       // Brand filter
       if (selectedBrands.length > 0 && !selectedBrands.includes(product.brand)) {
         return false;
@@ -54,23 +78,24 @@ export function useProductFilter() {
     });
 
     // Sort products
+    const sortedResults = [...results];
     if (sort) {
       switch (sort) {
         case "newest":
-          results.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+          sortedResults.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
           break;
         case "oldest":
-          results.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
+          sortedResults.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
           break;
         case "price_asc":
-          results.sort((a, b) => {
+          sortedResults.sort((a, b) => {
             const aMinPrice = Math.min(...a.variants.map(v => v.price));
             const bMinPrice = Math.min(...b.variants.map(v => v.price));
             return aMinPrice - bMinPrice;
           });
           break;
         case "price_desc":
-          results.sort((a, b) => {
+          sortedResults.sort((a, b) => {
             const aMaxPrice = Math.max(...a.variants.map(v => v.price));
             const bMaxPrice = Math.max(...b.variants.map(v => v.price));
             return bMaxPrice - aMaxPrice;
@@ -81,8 +106,11 @@ export function useProductFilter() {
       }
     }
 
-    return results;
+    return {
+      products: sortedResults,
+      totalCount: dummyProducts.length,
+      totalResults: sortedResults.length,
+      hasFilters,
+    };
   }, [searchParams]);
-
-  return filteredProducts;
 }

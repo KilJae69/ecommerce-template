@@ -1,20 +1,16 @@
 "use client";
 
 import { useHeaderScroll } from "@/lib/hooks/useHeaderScroll";
-import SortBySelect from "./SortBySelect";
+import SortBySelect from "../products-page/SortBySelect";
 import { m } from "motion/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FaXmark } from "react-icons/fa6";
 import { Suspense } from "react";
 import { SortBySelectSkeleton } from "../shared/Skeletons";
+import { useProductFilter } from "@/lib/hooks/useProductFilter";
 
-export default function ProductsStickyHeader({
-  totalResults,
-  totalCount,
-}: {
-  totalResults: number;
-  totalCount: number;
-}) {
+export default function ProductsStickyHeaderClient() {
+    const {totalCount,totalResults} = useProductFilter()
   const { positions } = useHeaderScroll();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -60,7 +56,6 @@ export default function ProductsStickyHeader({
           </button>
         )}
         <div className="flex gap-4">
-
           <Suspense fallback={<SortBySelectSkeleton />}>
             <SortBySelect />
           </Suspense>
@@ -71,19 +66,4 @@ export default function ProductsStickyHeader({
   );
 }
 
-export function ProductsStickyHeaderSkeleton() {
-  return (
-    <div className="py-3 z-10 px-2 hidden md:block sticky bg-white w-full animate-pulse">
-      <div className="w-full flex justify-between items-center">
-        {/* Line for "Showing X of Y" */}
-        <div className="h-4 w-1/4 bg-gray-200 rounded" />
-        <div className="flex gap-4">
-          {/* SortBySelect placeholder */}
-          <div className="h-8 w-28 bg-gray-200 rounded" />
-          {/* View button placeholder */}
-          <div className="h-8 w-12 bg-gray-200 rounded" />
-        </div>
-      </div>
-    </div>
-  );
-}
+
