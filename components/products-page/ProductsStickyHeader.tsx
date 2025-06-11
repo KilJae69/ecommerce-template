@@ -5,6 +5,8 @@ import SortBySelect from "./SortBySelect";
 import { m } from "motion/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FaXmark } from "react-icons/fa6";
+import { Suspense } from "react";
+import { SortBySelectSkeleton } from "../shared/Skeletons";
 
 export default function ProductsStickyHeader({
   totalResults,
@@ -58,7 +60,10 @@ export default function ProductsStickyHeader({
           </button>
         )}
         <div className="flex gap-4">
-          <SortBySelect />
+
+          <Suspense fallback={<SortBySelectSkeleton />}>
+            <SortBySelect />
+          </Suspense>
           <div>View</div>
         </div>
       </div>

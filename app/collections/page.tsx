@@ -11,6 +11,8 @@ import ProductsStickyHeaderAsyncWrapper from "@/components/products-page/Product
 
 
 
+
+
 export default async function CollectionsPage({
   searchParams,
 }: {
@@ -23,6 +25,7 @@ export default async function CollectionsPage({
 
   return (
     <section className="relative pb-12 mt-42 lg:pb-24">
+     
       <CollectionsPageClientWrapper>
       
         <Suspense fallback={<ProductsStickyHeaderSkeleton />}>

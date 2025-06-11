@@ -2,23 +2,15 @@
 
 import { useHeaderScroll } from "@/lib/hooks/useHeaderScroll";
 import { Container } from "../shared/Container";
-import dynamic from "next/dynamic";
+
 import { m } from "motion/react";
 
 
 import { ReactNode } from "react";
-import { FiltersSidebarSkeleton } from "@/components/products-page/FiltersSidebar";
+import FiltersSidebar from "@/components/products-page/FiltersSidebar";
+import MobileFiltersBar from "./MobileFiltersBar";
 
-const DynamicMobileFiltersBar = dynamic(
-  () => import("@/components/products-page/MobileFiltersBar"),
-  { ssr: false }
-);
-const DynamicDesktopFiltersSidebar = dynamic(
-  () => import("@/components/products-page/FiltersSidebar"),
-  { ssr: false,
-    loading: () => <FiltersSidebarSkeleton/>,
-   }
-);
+
 
 export default function CollectionsPageClientWrapper({children,}:{children:ReactNode; }) {
   const { positions } = useHeaderScroll();
@@ -38,7 +30,7 @@ export default function CollectionsPageClientWrapper({children,}:{children:React
               }}
               transition={{ type: "tween", duration: 0.2 }}
             >
-              <DynamicDesktopFiltersSidebar />
+              <FiltersSidebar />
             </m.div>
           </aside>
 
@@ -53,7 +45,7 @@ export default function CollectionsPageClientWrapper({children,}:{children:React
 
       {/* Mobile Fixed Bar */}
       <div className="md:hidden">
-        <DynamicMobileFiltersBar />
+        <MobileFiltersBar />
       </div>
     </>
   );

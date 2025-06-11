@@ -1,5 +1,6 @@
 import { Container } from "@/components/shared/Container";
 import GlareCTA from "@/components/shared/GlareCTA";
+
 import {
   Accordion,
   AccordionContent,
@@ -10,10 +11,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { faqData } from "@/constants/faqData";
 
 
+
 export default function FaqPage() {
   
   return (
     <section className="relative py-12 mt-42 lg:pb-24 ">
+      
       <Container>
         <div className="flex mx-auto text-center flex-col justify-center items-center py-6 gap-4 max-w-3xl">
           <h1 className="text-h1 text-gradient">Frequently Asked Questions</h1>

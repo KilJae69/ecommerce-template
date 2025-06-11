@@ -1,7 +1,7 @@
 // app/components/Header.tsx
 "use client";
 
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -17,6 +17,7 @@ import { FaRegUser } from "react-icons/fa";
 import { ScrollProgress } from "./ui/scroll-progress";
 import GlobalSearch from "./shared/GlobalSearch";
 import { useHeaderScroll } from "@/lib/hooks/useHeaderScroll";
+import { GlobalSearchSkeleton } from "./shared/Skeletons";
 
 // 1) hook to detect a CSS media-query
 function useMediaQuery(query: string) {
@@ -124,9 +125,8 @@ export default function Header() {
             </div>
           </Container>
         </m.div>
-        
-          <ScrollProgress className="absolute  h-[3px]"/>
-        
+
+        <ScrollProgress className="absolute  h-[3px]" />
       </m.header>
     );
   }
@@ -152,7 +152,9 @@ export default function Header() {
             </div>
             <div className="hidden md:block flex-1">
               {/* <SearchInput /> */}
-              <GlobalSearch />
+              <Suspense fallback={<GlobalSearchSkeleton />}>
+                <GlobalSearch />
+              </Suspense>
             </div>
 
             <div className="flex items-center gap-4">
@@ -161,7 +163,7 @@ export default function Header() {
             </div>
           </div>
         </Container>
-        <ScrollProgress className="absolute  h-[3px]"/>
+        <ScrollProgress className="absolute  h-[3px]" />
       </div>
       {/* THIS is the mobile-only search you wanted to slide */}
       <m.div
@@ -174,10 +176,11 @@ export default function Header() {
       >
         <Container>
           {/* <SearchInput /> */}
-          <GlobalSearch />
+          <Suspense fallback={<GlobalSearchSkeleton />}>
+                <GlobalSearch />
+              </Suspense>
         </Container>
       </m.div>
-     
     </header>
   );
 }
