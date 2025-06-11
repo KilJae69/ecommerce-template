@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function ProductsGrid({filteredProducts}:{filteredProducts:Product[]}) {
   return (
      <div className="grid gap-4 mt-8 px-2 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredProducts.map((product) => (
+              {filteredProducts.map((product,index) => (
                 <Link 
                   key={product.id} 
                   href={`/collections/${product.slug}`}
@@ -17,6 +17,7 @@ export default function ProductsGrid({filteredProducts}:{filteredProducts:Produc
                         src={product.variants[0].images[0]}
                         alt={product.name}
                         fill
+                        priority = {index === 0}
                         className="object-cover"
                       />
                     </div>
