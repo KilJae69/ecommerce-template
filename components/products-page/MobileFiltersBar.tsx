@@ -1,7 +1,7 @@
 // components/products-page/MobileFiltersBar.tsx
 "use client";
 
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { useScroll, useMotionValueEvent, m } from "motion/react";
 
 import ActiveFiltersBar from "./ActiveFiltersBar";
@@ -59,7 +59,10 @@ export default function MobileFiltersBar() {
       {/* 1) Show active filter pills (if any) */}
       {/* ─────────────────────────────── */}
       <div className="flex-1 overflow-x-auto pb-2">
+        <Suspense>
+
         <ActiveFiltersBar />
+        </Suspense>
       </div>
 
       {/* ─────────────────────────────── */}
