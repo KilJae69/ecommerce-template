@@ -5,16 +5,18 @@ import { Fragment, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { useScroll, useMotionValueEvent, m } from "motion/react";
+import { m } from "motion/react";
 
 import navLinks from "@/constants/navData";
 import { Container } from "./shared/Container";
 
-import SearchInput from "./shared/SearchInput";
+// import SearchInput from "./shared/SearchInput";
 import NavModal from "./NavModal";
 import CartModal from "./CartModal";
 import { FaRegUser } from "react-icons/fa";
 import { ScrollProgress } from "./ui/scroll-progress";
+import GlobalSearch from "./shared/GlobalSearch";
+import { useHeaderScroll } from "@/lib/hooks/useHeaderScroll";
 
 // 1) hook to detect a CSS media-query
 function useMediaQuery(query: string) {
@@ -36,23 +38,7 @@ export default function Header() {
   // detect md breakpoint
   const isMdUp = useMediaQuery("(min-width: 768px)");
 
-  // your existing scroll logic
-  const [headerState, setHeaderState] = useState<"top" | "hidden" | "small">(
-    "top"
-  );
-  const { scrollY } = useScroll();
-  
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() || 0;
-    if (latest === 0) {
-      setHeaderState("top");
-    } else if (latest > previous && latest > 50) {
-      setHeaderState("hidden");
-    } else if (latest < previous) {
-      setHeaderState("small");
-    }
-  });
+  const { headerState, positions } = useHeaderScroll();
 
   // MD-up version: animate whole header & padding
   if (isMdUp) {
@@ -62,9 +48,11 @@ export default function Header() {
     return (
       <m.header
         initial={{ y: -150 }}
-        animate={{ y: headerState === "hidden" ? -44 : 0 }}
+        animate={{
+          y: headerState === "hidden" ? -positions.desktop.topBarHeight : 0,
+        }}
         transition={{ type: "tween", duration: 0.2 }}
-        className="fixed z-[1000] top-0 left-0 right-0"
+        className="fixed  z-[1000] top-0 left-0 right-0"
       >
         {/* Top Header Div */}
         <div className="bg-primary w-full hidden md:block text-white py-1">
@@ -90,7 +78,6 @@ export default function Header() {
                   ))}
                 </ul>
               </nav>
-             
             </div>
           </Container>
         </div>
@@ -116,14 +103,14 @@ export default function Header() {
                     src="/logo.png"
                     className="object-contain"
                     priority
-                   
                     fill
                     alt="logo"
                   />
                 </div>
               </Link>
               <div className="hidden md:block flex-1">
-                <SearchInput />
+                {/* <SearchInput /> */}
+                <GlobalSearch />
               </div>
 
               <div className="flex items-center gap-4">
@@ -132,23 +119,21 @@ export default function Header() {
               </div>
             </div>
             <div className="md:hidden mt-3">
-              <SearchInput />
+              {/* <SearchInput /> */}
+              <GlobalSearch />
             </div>
           </Container>
-
-          <ScrollProgress
-            className={`top-[181px]  ${
-              headerState === "hidden" ? "md:top-[101px]" : "md:top-[121px]"
-            }`}
-          />
         </m.div>
+        
+          <ScrollProgress className="absolute  h-[3px]"/>
+        
       </m.header>
     );
   }
 
   // < md version: static header, only animate the mobile search bar
   return (
-    <header className="fixed z-100 top-0 left-0 right-0">
+    <header className="fixed z-[4000] top-0 left-0 right-0">
       {/* we still render your two header divs exactly as before */}
 
       <div className="relative z-10  border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] border-b border-primary/30">
@@ -166,7 +151,8 @@ export default function Header() {
               />
             </div>
             <div className="hidden md:block flex-1">
-              <SearchInput />
+              {/* <SearchInput /> */}
+              <GlobalSearch />
             </div>
 
             <div className="flex items-center gap-4">
@@ -175,6 +161,7 @@ export default function Header() {
             </div>
           </div>
         </Container>
+        <ScrollProgress className="absolute  h-[3px]"/>
       </div>
       {/* THIS is the mobile-only search you wanted to slide */}
       <m.div
@@ -186,14 +173,11 @@ export default function Header() {
         className="md:hidden py-3  border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] border-b border-primary/30"
       >
         <Container>
-          <SearchInput />
+          {/* <SearchInput /> */}
+          <GlobalSearch />
         </Container>
       </m.div>
-      <ScrollProgress
-        className={` ${
-          headerState === "hidden" ? "top-[80px]" : "top-[153px]"
-        }`}
-      />
+     
     </header>
   );
 }

@@ -53,7 +53,7 @@ export default function MobileFiltersBar() {
         y: barState === "hidden" ? "100%" : 0,
       }}
       transition={{ type: "tween", duration: 0.2 }}
-      className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-neutral-200 shadow-md p-4 md:hidden h-32 flex flex-col justify-between"
+      className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-neutral-200 shadow-md p-4  h-28 flex flex-col justify-between"
     >
       {/* ─────────────────────────────── */}
       {/* 1) Show active filter pills (if any) */}

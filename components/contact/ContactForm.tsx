@@ -62,7 +62,7 @@ export default function ContactForm({
     >
       <FadeIn>
         <form
-          className="my-8 bg-linear-to-b from-primary  to-primary-lighter relative shadow-2xl p-4 md:p-16 rounded-md"
+          className="my-8 bg-linear-to-b from-primary  to-slate-700 relative shadow-2xl p-4 md:p-16 rounded-md"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">

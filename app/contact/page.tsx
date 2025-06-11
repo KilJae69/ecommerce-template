@@ -1,4 +1,5 @@
 import ContactForm from "@/components/contact/ContactForm";
+// import VanishingContactForm from "@/components/contact/VanishingContactForm";
 import { Container } from "@/components/shared/Container";
 import GlareCTA from "@/components/shared/GlareCTA";
 
@@ -22,7 +23,7 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <ContactForm />
+           <ContactForm/>
           </section>
 
           <section className=" py-4  lg:py-11.5">

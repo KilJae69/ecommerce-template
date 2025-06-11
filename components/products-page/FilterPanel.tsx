@@ -148,8 +148,8 @@ export default function FilterPanel() {
           </button>
         </div>
       ) : (
-        <div className="pt-4 border-t border-neutral-200">
-          <p className="text-center text-neutral-500 italic">
+        <div className="pt-4  border-t border-neutral-200">
+          <p className="min-h-[40px] text-center text-neutral-500 italic">
             No active filters
           </p>
         </div>

@@ -1,118 +1,173 @@
-// /constants/productsData.ts
-
-/**
- * A single “color variant” of a base shoe model.
- */
-export interface ProductVariant {
-  /**  
-   * A human‐readable label for this color‐way (e.g. "Core Black / White", "Signal Pink / White"). 
-   */
-  color: string;
-
-  /** Stock Keeping Unit (unique per color‐way) */
-  sku: string;
-
-  /**  
-   * Image URLs for this color.  
-   * The first image is the “featured” photo for that color.  
-   */
-  images: string[];
-
-  /**  
-   * Inventory per size for THIS variant.  
-   * E.g. { "7": 12, "8": 0, "9": 5, … }  
-   */
-  stockBySize: Record<string, number>;
-
-  /** (Optional) If this color is currently on sale, you could override price here. */
-  salePrice?: number;
-}
-
-/**
- * A single “shoe model” which can have multiple color variants.  
- */
-export interface Product {
-  /** Unique model identifier (UUID or “model code”) */
+export type ProductVariant = {
   id: string;
-
-  /** URL slug for the model page (e.g. "ultra-boost-21") */
-  slug: string;
-
-  /** Model name (common to all variants) */
-  name: string;
-
-  /** Brand: one of your four shoe brands or “other” */
-  brand: "adidas" | "nike" | "under-armour" | "new-balance" | string;
-
-  /** Category (running, casual, training, etc.) */
-  category: string;
-
-  /** Gender orientation (men, women, unisex) */
-  gender: "men" | "women" | "unisex";
-
-  /**  
-   * Base MSRP or “list price” (often the same across all variants, unless some colors 
-   * carry a different premium— in that case, individual variants can override below). 
-   */
-  originalPrice: number;
-
-  /**  
-   * Base “current” price (unless overridden per-variant via `salePrice`).  
-   */
+  color: string;
+  size: string;
   price: number;
+  stock: number;
+  images: string[];
+};
 
-  /** Currency code (e.g. "USD") */
-  currency: string;
-
-  /**  
-   * All available sizes for this model *across all variants*.  
-   * (Individual variants may have zero stock in some of those sizes.)  
-   */
-  availableSizes: number[];
-
-  /**  
-   * Shared short description—shown on category/list pages.  
-   */
-  shortDescription: string;
-
-  /**  
-   * Shared long description—shown on the product detail page. Could be HTML/Markdown.  
-   */
-  longDescription: string;
-
-  /**  
-   * Bullet‐point features applicable to all colorways of this model.  
-   */
-  features: string[];
-
-  /** Material composition, shared across all variants */
-  material: string;
-
-  /** Weight in grams, if you want to show it in specs */
-  weightInGrams?: number;
-
-  /** Release date (ISO string), typically same for all colorways */
-  releaseDate: string;
-
-  /** Aggregate rating data (could be shared across all variants) */
-  ratingAverage: number;
-  ratingCount: number;
-
-  /** Tags or badges (e.g. ["best-seller", "new-arrival"]) */
-  tags: string[];
-
-  /**  
-   * Whether this entire model should be “featured” on homepage or a banner.  
-   * You could also store a per‐variant “isFeatured” if only certain colors get highlighted.  
-   */
-  isFeatured: boolean;
-
-  /**  
-   * The key difference: a list of all color variants.  
-   */
+export type Product = {
+  id: string;
+  name: string;
+  slug: string;
+  brand: string;
+  gender: string[];
+  description: string;
+  createdAt: Date;
   variants: ProductVariant[];
+};
 
-  /** Optional SEO fields */
-  metaTitle?: string;
-  metaDescription?: string;
-}
+export const dummyProducts: Product[] = [
+  {
+    id: "1",
+    name: "Nike Air Max 270",
+    slug: "nike-air-max-270",
+    brand: "nike",
+    gender: ["men", "women"],
+    description: "Comfortable running shoes with Air cushioning",
+    createdAt: new Date("2023-01-15"),
+    variants: [
+      {
+        id: "1-1",
+        color: "black",
+        size: "8",
+        price: 150,
+        stock: 10,
+        images: ["/products/nike-air-max-270-black-1.jpg", "/products/nike-air-max-270-black-2.jpg"]
+      },
+      {
+        id: "1-2",
+        color: "white",
+        size: "9",
+        price: 150,
+        stock: 5,
+        images: ["/products/nike-air-max-270-white-1.jpg", "/products/nike-air-max-270-white-2.jpg"]
+      },
+      {
+        id: "1-3",
+        color: "blue",
+        size: "10",
+        price: 150,
+        stock: 8,
+        images: ["/products/nike-air-max-270-blue-1.jpg", "/products/nike-air-max-270-blue-2.jpg"]
+      }
+    ]
+  },
+  {
+    id: "2",
+    name: "Adidas Ultraboost 21",
+    slug: "adidas-ultraboost-21",
+    brand: "adidas",
+    gender: ["men"],
+    description: "Responsive running shoes with Boost technology",
+    createdAt: new Date("2023-02-20"),
+    variants: [
+      {
+        id: "2-1",
+        color: "black",
+        size: "9",
+        price: 180,
+        stock: 7,
+        images: ["/products/adidas-ultraboost-black-1.jpg", "/products/adidas-ultraboost-black-2.jpg"]
+      },
+      {
+        id: "2-2",
+        color: "red",
+        size: "10",
+        price: 180,
+        stock: 3,
+        images: ["/products/adidas-ultraboost-red-1.jpg", "/products/adidas-ultraboost-red-2.jpg"]
+      }
+    ]
+  },
+  {
+    id: "3",
+    name: "Under Armour HOVR Phantom",
+    slug: "under-armour-hovr-phantom",
+    brand: "under-armour",
+    gender: ["women"],
+    description: "Connected running shoes with HOVR technology",
+    createdAt: new Date("2023-03-10"),
+    variants: [
+      {
+        id: "3-1",
+        color: "white",
+        size: "7",
+        price: 140,
+        stock: 12,
+        images: ["/products/ua-hovr-white-1.jpg", "/products/ua-hovr-white-2.jpg"]
+      },
+      {
+        id: "3-2",
+        color: "grey",
+        size: "8",
+        price: 140,
+        stock: 6,
+        images: ["/products/ua-hovr-grey-1.jpg", "/products/ua-hovr-grey-2.jpg"]
+      }
+    ]
+  },
+  {
+    id: "4",
+    name: "New Balance 574",
+    slug: "new-balance-574",
+    brand: "new-balance",
+    gender: ["men", "women"],
+    description: "Classic lifestyle sneakers",
+    createdAt: new Date("2023-01-05"),
+    variants: [
+      {
+        id: "4-1",
+        color: "green",
+        size: "9",
+        price: 90,
+        stock: 15,
+        images: ["/products/nb-574-green-1.jpg", "/products/nb-574-green-2.jpg"]
+      },
+      {
+        id: "4-2",
+        color: "brown",
+        size: "10",
+        price: 90,
+        stock: 9,
+        images: ["/products/nb-574-brown-1.jpg", "/products/nb-574-brown-2.jpg"]
+      },
+      {
+        id: "4-3",
+        color: "blue",
+        size: "11",
+        price: 90,
+        stock: 4,
+        images: ["/products/nb-574-blue-1.jpg", "/products/nb-574-blue-2.jpg"]
+      }
+    ]
+  },
+  {
+    id: "5",
+    name: "Nike React Infinity Run",
+    slug: "nike-react-infinity-run",
+    brand: "nike",
+    gender: ["men"],
+    description: "Stable running shoes for injury prevention",
+    createdAt: new Date("2023-04-01"),
+    variants: [
+      {
+        id: "5-1",
+        color: "black",
+        size: "10",
+        price: 160,
+        stock: 8,
+        images: ["/products/nike-react-black-1.jpg", "/products/nike-react-black-2.jpg"]
+      },
+      {
+        id: "5-2",
+        color: "yellow",
+        size: "11",
+        price: 160,
+        stock: 5,
+        images: ["/products/nike-react-yellow-1.jpg", "/products/nike-react-yellow-2.jpg"]
+      }
+    ]
+  }
+];

@@ -102,10 +102,7 @@ export default function ActiveFiltersBar() {
 
   return (
     <div
-      className="
-         md:hidden absolute top-0 left-0 right-0 w-full
-        px-4 py-2 flex flex-wrap items-center gap-2
-      "
+      className="md:hidden absolute top-0 left-0 right-0 w-full px-4 py-2 flex flex-wrap items-center gap-2"
     >
       {/* Label on the left (optional) */}
       {/* <div className="mr-2 font-medium text-neutral-700">Active Filters:</div> */}

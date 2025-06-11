@@ -15,6 +15,8 @@
 
   --animate-marquee: marquee 20s infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+
+  
 }
 
 .scrollbar-hide::-webkit-scrollbar {
@@ -28,7 +30,7 @@
 /* width */
 ::-webkit-scrollbar {
   width: 3px;
-   height: 3px; 
+  height: 3px;
 }
 
 /* Track */
