@@ -133,7 +133,7 @@ export default function Header() {
 
   // < md version: static header, only animate the mobile search bar
   return (
-    <header className="fixed z-[4000] top-0 left-0 right-0">
+    <header className="fixed md:hidden z-[4000] top-0 left-0 right-0">
       {/* we still render your two header divs exactly as before */}
 
       <div className="relative z-10  border-opacity-40 bg-white bg-opacity-80 shadow-lg shadow-black/[0.03] backdrop-blur-[0.5rem] border-b border-primary/30">

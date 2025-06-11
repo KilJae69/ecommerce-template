@@ -6,9 +6,10 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 interface SizeFilterProps {
   value: string[];                  // e.g. ["8", "9", "10"]
   onChange: (newValues: string[]) => void;
+   disabled?: boolean;
 }
 
-export default function SizeFilter({ value, onChange }: SizeFilterProps) {
+export default function SizeFilter({ value, onChange,disabled }: SizeFilterProps) {
   // Let’s assume you want sizes 6, 7, 8, 9, 10, 11, 12, 13
   const allSizes = ["6", "7", "8", "9", "10", "11", "12", "13"];
 
@@ -20,6 +21,7 @@ export default function SizeFilter({ value, onChange }: SizeFilterProps) {
         className="flex flex-wrap gap-2"
         value={value}
         onValueChange={onChange}
+        disabled = {disabled}
       >
         {allSizes.map((sz) => (
           <ToggleGroupItem

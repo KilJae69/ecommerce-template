@@ -14,6 +14,7 @@ export default function FilterPanel() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+
   // 1) Read existing params from the URL and turn them into arrays/numbers
   const selectedBrands = useMemo(() => {
     const raw = searchParams.get("brands");
@@ -51,6 +52,7 @@ export default function FilterPanel() {
 
     // (Optionally reset other params here, e.g. page number)
     // updated.delete("page");
+    
 
     router.push(`/collections?${updated.toString()}`);
   };
@@ -85,8 +87,17 @@ export default function FilterPanel() {
   // ─────────────────────────────────────────────────────────────
 
   function clearAllFilters() {
-    // Reset the URL to /collections with no search params
-    router.push("/collections");
+    // grab only the `query` (if any)
+    const updated = new URLSearchParams();
+    const q = searchParams.get("query");
+    if (q) updated.set("query", q);
+
+    // reset everything else
+    router.push(
+      updated.toString()
+        ? `/collections?${updated.toString()}`
+        : "/collections"
+    );
   }
 
   return (

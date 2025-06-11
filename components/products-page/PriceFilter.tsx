@@ -17,6 +17,7 @@ interface PriceFilterProps {
   overallMax: number;
   /** Slider step (e.g. 5) */
   step?: number;
+  disabled?: boolean;
 }
 
 export default function PriceFilter({
@@ -26,6 +27,7 @@ export default function PriceFilter({
   overallMin,
   overallMax,
   step = 1,
+  disabled
 }: PriceFilterProps) {
   const [value, setValue] = useState<[number, number]>([minPrice, maxPrice]);
 
@@ -52,6 +54,7 @@ export default function PriceFilter({
           const [newMin, newMax] = newVal as [number, number];
           onChange(newMin, newMax);
         }}
+        disabled={disabled}
         min={overallMin}
         max={overallMax}
         step={step}

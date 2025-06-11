@@ -4,9 +4,10 @@ import { useHeaderScroll } from "@/lib/hooks/useHeaderScroll";
 import { Container } from "../shared/Container";
 import dynamic from "next/dynamic";
 import { m } from "motion/react";
-import SortBySelect from "./SortBySelect";
+
 
 import { ReactNode } from "react";
+import { FiltersSidebarSkeleton } from "@/components/products-page/FiltersSidebar";
 
 const DynamicMobileFiltersBar = dynamic(
   () => import("@/components/products-page/MobileFiltersBar"),
@@ -14,11 +15,14 @@ const DynamicMobileFiltersBar = dynamic(
 );
 const DynamicDesktopFiltersSidebar = dynamic(
   () => import("@/components/products-page/FiltersSidebar"),
-  { ssr: false }
+  { ssr: false,
+    loading: () => <FiltersSidebarSkeleton/>,
+   }
 );
 
-export default function CollectionsPageClientWrapper({children,totalCount}:{children:ReactNode; totalCount:number}) {
+export default function CollectionsPageClientWrapper({children,}:{children:ReactNode; }) {
   const { positions } = useHeaderScroll();
+  
   
   return (
     <>
@@ -40,21 +44,7 @@ export default function CollectionsPageClientWrapper({children,totalCount}:{chil
 
           {/* Main Content */}
           <div className="w-full pb-20 md:pb-0">
-            <m.div
-              className="py-3 z-10 px-2 hidden md:block sticky bg-white  w-full "
-              animate={{
-                top: positions.desktop.totalHeight,
-              }}
-              transition={{ type: "tween", duration: 0.2 }}
-            >
-              <div className="w-full flex justify-between items-center">
-                <p>Showing 12 of {totalCount} results</p>
-                <div className="flex gap-4">
-                  <SortBySelect />
-                  <div>View</div>
-                </div>
-              </div>
-            </m.div>
+            
 
             {children}
           </div>

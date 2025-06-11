@@ -12,9 +12,10 @@ import {
 interface BrandFilterProps {
   value: string[]; // e.g. [ "nike", "adidas" ]
   onChange: (newValues: string[]) => void;
+   disabled?: boolean;
 }
 
-export default function BrandFilter({ value, onChange }: BrandFilterProps) {
+export default function BrandFilter({ value, onChange,disabled }: BrandFilterProps) {
   return (
     <div className="space-y-2 ">
       <h3 className="text-md md:text-lg font-medium">Brand</h3>
@@ -22,6 +23,7 @@ export default function BrandFilter({ value, onChange }: BrandFilterProps) {
         type="multiple"
         className="grid grid-cols-4 md:grid-cols-2 w-full gap-2"
         value={value}
+         disabled={disabled}
         onValueChange={onChange}
       >
         <ToggleGroupItem

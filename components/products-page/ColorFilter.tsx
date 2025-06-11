@@ -6,9 +6,10 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 interface ColorFilterProps {
   value: string[];                     // e.g. ["black", "white"]
   onChange: (newValues: string[]) => void;
+   disabled?: boolean;
 }
 
-export default function ColorFilter({ value, onChange }: ColorFilterProps) {
+export default function ColorFilter({ value, onChange,disabled }: ColorFilterProps) {
   // You can adjust this list to match your actual color‐slug conventions:
   const allColors = [
     { label: "Black", slug: "black" },
@@ -29,6 +30,7 @@ export default function ColorFilter({ value, onChange }: ColorFilterProps) {
         className="flex flex-wrap gap-2"
         value={value}
         onValueChange={onChange}
+        disabled={disabled}
       >
         {allColors.map((c) => (
           <ToggleGroupItem

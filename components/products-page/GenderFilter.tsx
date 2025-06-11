@@ -6,9 +6,10 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 interface GenderFilterProps {
   value: string[];                     // e.g. ["men", "women"]
   onChange: (newValues: string[]) => void;
+  disabled?: boolean;
 }
 
-export default function GenderFilter({ value, onChange }: GenderFilterProps) {
+export default function GenderFilter({ value, onChange,disabled }: GenderFilterProps) {
   // Adjust these slugs/styles to fit your needs:
   const allGenders = [
     { label: "Men", slug: "men" },
@@ -24,6 +25,7 @@ export default function GenderFilter({ value, onChange }: GenderFilterProps) {
         className="flex flex-wrap gap-2"
         value={value}
         onValueChange={onChange}
+        disabled={disabled}
       >
         {allGenders.map((g) => (
           <ToggleGroupItem

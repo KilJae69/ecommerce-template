@@ -3,7 +3,8 @@
 import { dummyProducts } from "./productsData";
 
 
-interface FilterParams {
+export type FilterParams = {
+  query?: string;
   brands?: string;
   sizes?: string;
   colors?: string;
@@ -15,7 +16,9 @@ interface FilterParams {
 
 export async function getFilteredProducts(params: FilterParams) {
   // Simulate API delay
-
+ 
+// 2. pull out our “query” text, lowercased for comparison
+  const q = params.query?.trim().toLowerCase() || "";
 
   // Parse filter params
   const selectedBrands = params.brands?.split(",") || [];
@@ -27,6 +30,10 @@ export async function getFilteredProducts(params: FilterParams) {
 
   // Filter products
   const results = dummyProducts.filter(product => {
+    // — new: if there’s a search query, only keep products whose name matches
+    if (q && !product.name.toLowerCase().includes(q)) {
+      return false;
+    }
     // Brand filter
     if (selectedBrands.length > 0 && !selectedBrands.includes(product.brand)) {
       return false;
@@ -83,6 +90,7 @@ export async function getFilteredProducts(params: FilterParams) {
 
   return {
     products: results,
-    totalCount: dummyProducts.length // For showing "X of Y products"
+    totalCount: dummyProducts.length, // For showing "X of Y products"
+    totalResults: results.length
   };
 }

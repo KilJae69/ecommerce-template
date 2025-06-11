@@ -7,8 +7,8 @@ import { useTransition } from "react";
 const sortOptions = [
   { label: "Newest", value: "newest" },
   { label: "Oldest", value: "oldest" },
-  { label: "Price: Low to High", value: "price_asc" },
-  { label: "Price: High to Low", value: "price_desc" },
+  { label: "Low to High", value: "price_asc" },
+  { label: "High to Low", value: "price_desc" },
 ];
 
 export default function SortBySelect() {
@@ -33,7 +33,7 @@ export default function SortBySelect() {
 
   return (
     <Select value={current} onValueChange={handleChange} disabled={isPending}>
-      <SelectTrigger className="w-[220px] cursor-pointer">
+      <SelectTrigger className="w-[150px] cursor-pointer">
         <SelectValue placeholder="Sort by" />
       </SelectTrigger>
       <SelectContent>
