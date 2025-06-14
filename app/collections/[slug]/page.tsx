@@ -5,9 +5,9 @@ import Link from "next/link";
 import { dummyProducts } from "@/constants/productsData";
 import { Container } from "@/components/shared/Container";
 import { VariantSelector } from "@/components/products-page/VariantSelector";
-import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
-import { FaShopify } from "react-icons/fa";
+
 import { SingleProductGallery } from "@/components/products-page/SingleProductGallery";
+import { Button } from "@/components/ui/button";
 
 type PageProps = {
   // note: both params and searchParams are now Promises
@@ -25,6 +25,7 @@ export default async function ProductPage(props: PageProps) {
   const colorVariant =
     product.variants.find((v) => v.color === color) ?? product.variants[0];
   // pick a size (fall back to first of that color)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const selectedSize =
     size && colorVariant.sizes.includes(size) ? size : colorVariant.sizes[0];
 
@@ -48,10 +49,10 @@ export default async function ProductPage(props: PageProps) {
           {/* ────────────────── Info & Buy ────────────────── */}
           <div className="flex flex-col space-y-6">
             <div>
-              <span className="text-xs text-red-500 font-semibold">
+              <span className="text-lg text-primary-accent font-semibold">
                 NEW ARRIVAL!
               </span>
-              <h1 className="text-3xl font-bold mt-1">{product.name}</h1>
+              <h1 className="text-6xl font-bold mt-1">{product.name}</h1>
               <div className="mt-2 text-gray-600">
                 {product.brand.toUpperCase()}
               </div>
@@ -64,9 +65,9 @@ export default async function ProductPage(props: PageProps) {
             <VariantSelector slug={slug} variants={product.variants} />
 
             <div className="flex space-x-4">
-              <InteractiveHoverButton  icon={<FaShopify />}>
+              <Button className="bg-primary-accent text-xl w-full cursor-pointer shadow-lg text-white font-semibold tracking-wider py-4 h-auto px-7">
                 Add to cart
-              </InteractiveHoverButton>
+              </Button>
             </div>
           </div>
         </div>
@@ -97,7 +98,7 @@ export default async function ProductPage(props: PageProps) {
                   <span className="w-8">{star}★</span>
                   <div className="flex-1 h-2 bg-gray-200 rounded overflow-hidden mx-2">
                     <div
-                      className="h-full bg-red-500"
+                      className="h-full bg-primary-accent"
                       style={{ width: `${star * 15}%` }}
                     />
                   </div>
