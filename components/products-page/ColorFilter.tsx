@@ -19,7 +19,7 @@ export default function ColorFilter({ value, onChange,disabled }: ColorFilterPro
     { label: "Green", slug: "green" },
     { label: "Grey", slug: "grey" },
     { label: "Yellow", slug: "yellow" },
-    { label: "Brown", slug: "brown" },
+    { label: "Pink", slug: "pink" },
   ];
 
   return (

@@ -195,6 +195,7 @@ export function PlaceholdersAndVanishInput({
         ref={canvasRef}
       />
       <input
+      suppressHydrationWarning
       autoComplete="off"
         onChange={(e) => {
           if (!animating) {

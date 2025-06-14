@@ -1,7 +1,6 @@
 // lib/products.ts
 
-import { dummyProducts } from "./productsData";
-
+import { dummyProducts } from "../../constants/productsData";
 
 export type FilterParams = {
   query?: string;
@@ -12,12 +11,12 @@ export type FilterParams = {
   minPrice?: string;
   maxPrice?: string;
   sort?: string;
-}
+};
 
 export async function getFilteredProducts(params: FilterParams) {
   // Simulate API delay
- 
-// 2. pull out our “query” text, lowercased for comparison
+
+  // 2. pull out our “query” text, lowercased for comparison
   const q = params.query?.trim().toLowerCase() || "";
 
   // Parse filter params
@@ -29,7 +28,7 @@ export async function getFilteredProducts(params: FilterParams) {
   const maxPrice = Number(params.maxPrice) || 500;
 
   // Filter products
-  const results = dummyProducts.filter(product => {
+  const results = dummyProducts.filter((product) => {
     // — new: if there’s a search query, only keep products whose name matches
     if (q && !product.name.toLowerCase().includes(q)) {
       return false;
@@ -38,26 +37,32 @@ export async function getFilteredProducts(params: FilterParams) {
     if (selectedBrands.length > 0 && !selectedBrands.includes(product.brand)) {
       return false;
     }
-    
+
     // Gender filter
-    if (selectedGenders.length > 0 && !selectedGenders.some(g => product.gender.includes(g))) {
+    if (
+      selectedGenders.length > 0 &&
+      !selectedGenders.some((g) => product.gender.includes(g))
+    ) {
       return false;
     }
-    
+
     // Check if any variant matches the size/color/price filters
-    return product.variants.some(variant => {
+    return product.variants.some((variant) => {
       if (selectedSizes.length > 0 && !selectedSizes.includes(variant.size)) {
         return false;
       }
-      
-      if (selectedColors.length > 0 && !selectedColors.includes(variant.color)) {
+
+      if (
+        selectedColors.length > 0 &&
+        !selectedColors.includes(variant.color)
+      ) {
         return false;
       }
-      
+
       if (variant.price < minPrice || variant.price > maxPrice) {
         return false;
       }
-      
+
       return true;
     });
   });
@@ -73,15 +78,15 @@ export async function getFilteredProducts(params: FilterParams) {
         break;
       case "price_asc":
         results.sort((a, b) => {
-          const aMinPrice = Math.min(...a.variants.map(v => v.price));
-          const bMinPrice = Math.min(...b.variants.map(v => v.price));
+          const aMinPrice = Math.min(...a.variants.map((v) => v.price));
+          const bMinPrice = Math.min(...b.variants.map((v) => v.price));
           return aMinPrice - bMinPrice;
         });
         break;
       case "price_desc":
         results.sort((a, b) => {
-          const aMaxPrice = Math.max(...a.variants.map(v => v.price));
-          const bMaxPrice = Math.max(...b.variants.map(v => v.price));
+          const aMaxPrice = Math.max(...a.variants.map((v) => v.price));
+          const bMaxPrice = Math.max(...b.variants.map((v) => v.price));
           return bMaxPrice - aMaxPrice;
         });
         break;
@@ -91,6 +96,6 @@ export async function getFilteredProducts(params: FilterParams) {
   return {
     products: results,
     totalCount: dummyProducts.length, // For showing "X of Y products"
-    totalResults: results.length
+    totalResults: results.length,
   };
 }

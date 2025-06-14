@@ -1,9 +1,8 @@
 import {
   FilterParams,
   getFilteredProducts,
-} from "@/constants/getFilteredProducts";
+} from "@/components/template/getFilteredProducts";
 import ProductsGrid from "./ProductsGrid";
-
 
 export default async function ProductsGridAsyncWrapper({
   searchParams,
@@ -12,9 +11,5 @@ export default async function ProductsGridAsyncWrapper({
 }) {
   const params = await searchParams;
   const { products } = await getFilteredProducts(params);
-  return (
-    
-      <ProductsGrid filteredProducts={products} />
-    
-  );
+  return <ProductsGrid filteredProducts={products} />;
 }

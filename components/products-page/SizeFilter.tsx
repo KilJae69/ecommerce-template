@@ -11,7 +11,8 @@ interface SizeFilterProps {
 
 export default function SizeFilter({ value, onChange,disabled }: SizeFilterProps) {
   // Let’s assume you want sizes 6, 7, 8, 9, 10, 11, 12, 13
-  const allSizes = ["6", "7", "8", "9", "10", "11", "12", "13"];
+  const allSizes = ["36","37","38","39","40","41","42","43","44"];
+
 
   return (
     <div className="space-y-2">

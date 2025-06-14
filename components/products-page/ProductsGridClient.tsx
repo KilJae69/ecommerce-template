@@ -7,6 +7,7 @@ import Link from "next/link";
 
 export default function ProductsGridClient() {
   const { products } = useProductFilter();
+
   return (
     <div className="grid gap-4 mt-8 px-2 sm:grid-cols-2 lg:grid-cols-3">
       <AnimatePresence>
@@ -19,7 +20,7 @@ export default function ProductsGridClient() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Link href={`/collections/${product.slug}`} className="group">
+            <Link href={`/collections/${product.slug}?color=${product.variants[0].color}&size=${product.variants[0].sizes[0]}`} className="group">
               <div className="bg-white rounded-md overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                 <div className="aspect-square bg-gray-100 relative">
                   <Image
@@ -36,7 +37,7 @@ export default function ProductsGridClient() {
                   </h3>
                   <p className="text-gray-600 text-sm">{product.brand}</p>
                   <p className="font-medium mt-2">
-                    ${product.variants[0].price}
+                    ${product.price}
                   </p>
                 </div>
               </div>

@@ -12,21 +12,25 @@ type InteractiveHoverButtonProps =
   {
     href?: string;
     external?: boolean;
+     icon?: React.ReactNode;
+  
   } & // and also allow any anchor attributes in your {...props} spread:
     React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 export const InteractiveHoverButton = React.forwardRef<
   HTMLButtonElement,
   InteractiveHoverButtonProps
->(({ children, className, href, external = false, ...props }, ref) => {
+>(({ children, className, href, external = false,icon, ...props }, ref) => {
   // your existing markup exactly, unchanged:
+   const TheIcon = icon ?? <ArrowRight />;
   if (href && !external)
     return (
       <Link
         href={href}
         className={cn(
           "group inline-block relative w-auto cursor-pointer text-lg overflow-hidden rounded-full border border-primary-accent bg-background p-4 px-6 text-center font-semibold",
-          className
+          className,
+          
         )}
       >
         <div className="flex items-center gap-2">
@@ -37,7 +41,7 @@ export const InteractiveHoverButton = React.forwardRef<
         </div>
         <div className="absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-white opacity-0 transition-all duration-300 group-hover:-translate-x-5 group-hover:opacity-100">
           <span className="tracking-widest">{children}</span>
-          <ArrowRight />
+          {TheIcon}
         </div>
       </Link>
     );
@@ -62,7 +66,7 @@ export const InteractiveHoverButton = React.forwardRef<
         </div>
         <div className="absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-white opacity-0 transition-all duration-300 group-hover:-translate-x-5 group-hover:opacity-100">
           <span className="tracking-widest">{children}</span>
-          <ArrowRight />
+          {TheIcon}
         </div>
       </a>
     );
@@ -84,7 +88,7 @@ export const InteractiveHoverButton = React.forwardRef<
       </div>
       <div className="absolute top-0 z-10 flex h-full w-full translate-x-12 items-center justify-center gap-2 text-white opacity-0 transition-all duration-300 group-hover:-translate-x-5 group-hover:opacity-100">
         <span className="tracking-widest">{children}</span>
-        <ArrowRight />
+        {TheIcon}
       </div>
     </button>
   );
