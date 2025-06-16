@@ -1,3 +1,4 @@
+/*
 import {
   FilterParams,
   getFilteredProducts,
@@ -15,3 +16,4 @@ export default async function ProductsStickyHeaderAsyncWrapper({
     <ProductsStickyHeader totalResults={totalResults} totalCount={totalCount} />
   );
 }
+*/

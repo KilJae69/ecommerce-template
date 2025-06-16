@@ -1,3 +1,4 @@
+/*
 "use client";
 
 import { useHeaderScroll } from "@/lib/hooks/useHeaderScroll";
@@ -74,15 +75,16 @@ export function ProductsStickyHeaderSkeleton() {
   return (
     <div className="py-3 z-10 px-2 hidden md:block sticky bg-white w-full animate-pulse">
       <div className="w-full flex justify-between items-center">
-        {/* Line for "Showing X of Y" */}
+      
         <div className="h-4 w-1/4 bg-gray-200 rounded" />
         <div className="flex gap-4">
-          {/* SortBySelect placeholder */}
+         
           <div className="h-8 w-28 bg-gray-200 rounded" />
-          {/* View button placeholder */}
+      
           <div className="h-8 w-12 bg-gray-200 rounded" />
         </div>
       </div>
     </div>
   );
 }
+*/

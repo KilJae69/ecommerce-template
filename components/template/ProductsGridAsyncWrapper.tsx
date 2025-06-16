@@ -1,3 +1,4 @@
+/*
 import {
   FilterParams,
   getFilteredProducts,
@@ -13,3 +14,4 @@ export default async function ProductsGridAsyncWrapper({
   const { products } = await getFilteredProducts(params);
   return <ProductsGrid filteredProducts={products} />;
 }
+*/
