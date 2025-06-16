@@ -43,7 +43,7 @@ export default function ProductsGrid({
                 {product.name}
               </h3>
               <p className="text-gray-600 text-sm">{product.brand}</p>
-              <p className="font-medium mt-2">${product.variants[0].price}</p>
+              <p className="font-medium mt-2">${product.price}</p>
             </div>
           </div>
         </Link>

@@ -26,9 +26,9 @@ export function SingleProductGallery({
   if (len === 0) return null;
 
   return (
-    <div className="flex  flex-col-reverse md:flex-row gap-4">
+    <div className="flex relative   flex-col-reverse lg:flex-row gap-4">
       {/* Thumbnails */}
-      <div className="flex flex-wrap md:flex-col justify-between gap-2">
+      <div className="flex flex-wrap lg:flex-nowrap lg:flex-col justify-between gap-2">
         {images.map((src, i) => (
           <div
             key={i}
@@ -59,7 +59,7 @@ export function SingleProductGallery({
           alt={alt}
           width={600}
           height={600}
-          className="object-cover w-full h-full"
+          className="object-contain aspect-square  w-full h-full"
           priority
         />
 

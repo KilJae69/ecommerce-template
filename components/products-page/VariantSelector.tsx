@@ -128,7 +128,7 @@ export function VariantSelector({ slug, variants }: VariantSelectorProps) {
                 key={s}
                 aria-label={`EU${s}`}
                 className={classNames(
-                  "group relative flex items-center justify-center rounded-md px-8 py-6 transition-all",
+                  "group relative flex items-center justify-center rounded-md px-7 py-3 md:px-8 md:py-6 transition-all",
                   s === size
                     ? "bg-primary-accent shadow-md"
                     : "bg-gray-100 shadow-sm",
