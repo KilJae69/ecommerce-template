@@ -1,5 +1,5 @@
 // lib/products.ts
-
+/*
 import { dummyProducts } from "../../constants/productsData";
 
 export type FilterParams = {
@@ -99,3 +99,4 @@ export async function getFilteredProducts(params: FilterParams) {
     totalResults: results.length,
   };
 }
+*/
