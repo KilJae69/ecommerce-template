@@ -105,16 +105,16 @@ export  function FiltersPanelSkeleton() {
     </div>
   );
 }
-
+/*
 export function ProductsGridSkeleton() {
   return (
     <div className="grid gap-4 mt-8 px-2 sm:grid-cols-2 lg:grid-cols-3 animate-pulse">
       {Array.from({ length: 6 }).map((_, index) => (
         <div key={index} className="bg-white rounded-md overflow-hidden shadow-sm">
-          {/* Image placeholder */}
+          
           <div className="aspect-square bg-gray-200" />
 
-          {/* Text placeholders */}
+         
           <div className="p-4 space-y-2">
             <div className="h-5 w-3/4 bg-gray-200 rounded" />
             <div className="h-4 w-1/2 bg-gray-200 rounded" />
@@ -125,7 +125,7 @@ export function ProductsGridSkeleton() {
     </div>
   );
 }
-
+*/
 export function ProductsStickyHeaderSkeleton() {
   return (
     <div className="py-3 z-10 px-2 hidden md:block sticky bg-white w-full animate-pulse">
@@ -139,6 +139,36 @@ export function ProductsStickyHeaderSkeleton() {
           <div className="h-8 w-12 bg-gray-200 rounded" />
         </div>
       </div>
+    </div>
+  );
+}
+
+export function ProductsGridSkeleton() {
+  return (
+    <div className="grid gap-4 mt-8 px-2 sm:grid-cols-2 lg:grid-cols-3 animate-pulse">
+      {Array.from({ length: 6 }).map((_, index) => (
+        <div
+          key={index}
+          className="bg-white rounded-md overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+        >
+          {/* Image placeholder */}
+          <div className="aspect-square bg-gray-100 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gray-200" />
+          </div>
+
+          {/* Text section */}
+          <div className="">
+            <div className="px-4 py-4 border-b border-dashed">
+              <div className="h-6 w-3/4 bg-gray-200 rounded" />
+            </div>
+
+            <div className="px-4 py-4 flex items-center justify-between">
+              <div className="h-6 w-12 bg-gray-200 rounded" />
+              <div className="h-6 w-10 bg-gray-200 rounded" />
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

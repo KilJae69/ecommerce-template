@@ -6,7 +6,7 @@ import CollectionsPageClientWrapper from "@/components/products-page/Collections
 
 import ProductsGridClient from "@/components/products-page/ProductsGridClient";
 import ProductsStickyHeaderClient from "@/components/products-page/ProductsStickyHeaderClient";
-import { ProductsStickyHeaderSkeleton } from "@/components/shared/Skeletons";
+import { ProductsGridSkeleton, ProductsStickyHeaderSkeleton } from "@/components/shared/Skeletons";
 
 export default function CollectionsPage() {
   // 1. await the dynamic searchParams API
@@ -17,7 +17,7 @@ export default function CollectionsPage() {
         <Suspense fallback={<ProductsStickyHeaderSkeleton />}>
           <ProductsStickyHeaderClient />
         </Suspense>
-        <Suspense>
+        <Suspense fallback={<ProductsGridSkeleton/>}>
           <ProductsGridClient />
         </Suspense>
       </CollectionsPageClientWrapper>
