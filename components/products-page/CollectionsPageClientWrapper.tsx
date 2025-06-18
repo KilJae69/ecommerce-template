@@ -6,7 +6,7 @@ import { Container } from "../shared/Container";
 import { m } from "motion/react";
 
 
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import FiltersSidebar from "@/components/products-page/FiltersSidebar";
 import MobileFiltersBar from "./MobileFiltersBar";
 
@@ -14,7 +14,13 @@ import MobileFiltersBar from "./MobileFiltersBar";
 
 export default function CollectionsPageClientWrapper({children,}:{children:ReactNode; }) {
   const { positions } = useHeaderScroll();
-  
+  useEffect(() => {
+  if (typeof window !== "undefined") {
+    // Disable automatic scroll restoration behavior
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+  }
+}, []);
   
   return (
     <>
