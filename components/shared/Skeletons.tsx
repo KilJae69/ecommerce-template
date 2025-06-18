@@ -145,7 +145,7 @@ export function ProductsStickyHeaderSkeleton() {
 
 export function ProductsGridSkeleton() {
   return (
-    <div className="grid gap-4 mt-8 px-2 sm:grid-cols-2 lg:grid-cols-3 animate-pulse">
+    <div className="grid gap-4 mt-8 px-2 grid-cols-2 lg:grid-cols-3 animate-pulse">
       {Array.from({ length: 6 }).map((_, index) => (
         <div
           key={index}

@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import LogoFactory from "./LogoFactory";
 
-// import ProductCardActions from "./ProductCardActions";
+
+import ProductCardActionsLoader from "./ProductCardActionsLoader";
 
 export default function ProductCard({
   product,
@@ -25,7 +26,7 @@ export default function ProductCard({
             src={product.variants[0].images[0]}
             alt={product.name}
             fill
-            priority={index < 4}
+            priority={index < 2}
             className="object-cover group-hover:scale-105 transition duration-300"
           />
 
@@ -61,16 +62,16 @@ export default function ProductCard({
       </div> */}
 
          {/* Action Buttons */}
-          {/* <ProductCardActions
-            productId={product.id}
-            name={product.name}
-            price={product.price}
-            image={product.variants[0].images[0]}
-            color={product.variants[0].color}
-            size={product.variants[0].sizes[0]}
-            slug={product.slug}
-            brand={product.brand}
-          /> */}
+         <ProductCardActionsLoader
+  productId={product.id}
+  name={product.name}
+  price={product.price}
+  image={product.variants[0].images[0]}
+  color={product.variants[0].color}
+  size={product.variants[0].sizes[0]}
+  slug={product.slug}
+  brand={product.brand}
+/>
     </Link>
   );
 }

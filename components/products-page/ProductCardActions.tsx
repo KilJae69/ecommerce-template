@@ -10,7 +10,7 @@ import ToggleWishlistButton from "../ToggleWishlistButton";
 import { AnimatePresence, m } from "motion/react";
 import { useIsTouchDevice } from "@/lib/hooks/useIsTouchDevice";
 
-interface ProductCardActionsProps {
+export type ProductCardActionsProps = {
   productId: string;
   name: string;
   price: number;
