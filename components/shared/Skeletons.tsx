@@ -1,3 +1,6 @@
+import { Heart } from "lucide-react";
+import { IoCartOutline } from "react-icons/io5";
+
 export  function SortBySelectSkeleton() {
   return (
     <div
@@ -186,5 +189,28 @@ export function CartItemListSkeleton() {
 export function CartSummarySkeleton() {
   return (
     <div className="sticky top-34 p-6 min-w-[300px] shadow-sm rounded-md space-y-6 h-[600px] bg-gray-100 animate-pulse" />
+  );
+}
+
+
+export function CartTriggerPlaceholder() {
+  return (
+    <div className="relative">
+      <IoCartOutline className="group-hover:scale-90 transition-all size-8 md:size-9" />
+      <span className="size-5 flex items-center justify-center text-xs group-hover:-translate-y-1 bg-primary-accent absolute rounded-full left-6 text-white -top-2">
+        0
+      </span>
+    </div>
+  );
+}
+
+export function WishlistTriggerPlaceholder() {
+  return (
+    <div className="relative size-9">
+      <Heart className="group-hover:scale-90 transition-all size-8 " />
+      <span className="size-5 flex items-center justify-center text-xs group-hover:-translate-y-1 bg-primary-accent absolute rounded-full left-6 text-white -top-2">
+        0
+      </span>
+    </div>
   );
 }
