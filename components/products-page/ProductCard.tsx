@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import LogoFactory from "./LogoFactory";
 
-// import ProductCardActionsLoader from "./ProductCardActionsLoader";
+
+import ProductCardActions from "./ProductCardActions";
 
 export default function ProductCard({
   product,
@@ -59,7 +60,7 @@ export default function ProductCard({
       </div> */}
 
       {/* Action Buttons */}
-      {/* <ProductCardActionsLoader
+      <ProductCardActions
         productId={product.id}
         name={product.name}
         price={product.price}
@@ -68,7 +69,7 @@ export default function ProductCard({
         size={product.variants[0].sizes[0]}
         slug={product.slug}
         brand={product.brand}
-      /> */}
+      />
     </Link>
   );
 }
