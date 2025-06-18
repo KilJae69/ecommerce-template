@@ -54,7 +54,7 @@ function useMediaQuery(query: string) {
 export default function Header() {
   // detect md breakpoint
   const isMdUp = useMediaQuery("(min-width: 768px)");
-
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   const { headerState, positions } = useHeaderScroll();
 
@@ -71,7 +71,8 @@ export default function Header() {
         }}
         transition={{ type: "tween", duration: 0.2 }}
         className="fixed  z-[1000] top-0 left-0 right-0"
-      
+        onMouseEnter={() => setShouldLoad(true)}
+        onTouchStart={() => setShouldLoad(true)}
       >
         {/* Top Header Div */}
         <div className="bg-primary w-full hidden md:block text-white py-1">
@@ -134,8 +135,10 @@ export default function Header() {
 
               <div className="flex items-center gap-4">
                 <FaRegUser className="size-6 md:size-8" />
-              <LazyWishlistModal/>
-              <LazyCartModal/>
+                {!shouldLoad && <WishlistTriggerPlaceholder />}
+                {!shouldLoad && <CartTriggerPlaceholder />}
+                {shouldLoad && <LazyWishlistModal />}
+                {shouldLoad && <LazyCartModal />}
               </div>
             </div>
             <div className="md:hidden mt-3">
@@ -153,7 +156,8 @@ export default function Header() {
   // < md version: static header, only animate the mobile search bar
   return (
     <header
-     
+      onMouseEnter={() => setShouldLoad(true)}
+      onTouchStart={() => setShouldLoad(true)}
       className="fixed md:hidden z-[4000] top-0 left-0 right-0"
     >
       {/* we still render your two header divs exactly as before */}
@@ -182,8 +186,10 @@ export default function Header() {
 
             <div className="flex items-center gap-4">
               <FaRegUser className="size-6 md:size-8" />
-              <LazyWishlistModal/>
-              <LazyCartModal/>
+              {!shouldLoad && <WishlistTriggerPlaceholder />}
+              {!shouldLoad && <CartTriggerPlaceholder />}
+              {shouldLoad && <LazyWishlistModal />}
+              {shouldLoad && <LazyCartModal />}
             </div>
           </div>
         </Container>
