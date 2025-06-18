@@ -70,9 +70,8 @@ export default function MobileFiltersBar() {
       {/* 2) Always‐visible row with “Filters” button and “Sort” button */}
       {/* ─────────────────────────────── */}
       <div className="flex w-full justify-between">
-        <Suspense fallback={<SortBySelectSkeleton />}>
-          <MobileFilterDrawer />
-        </Suspense>
+        
+        <MobileFilterDrawer />
         <Suspense fallback={<SortBySelectSkeleton />}>
           <SortBySelect />
         </Suspense>

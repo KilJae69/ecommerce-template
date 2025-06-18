@@ -172,3 +172,19 @@ export function ProductsGridSkeleton() {
     </div>
   );
 }
+
+export function CartItemListSkeleton() {
+  return (
+    <div className="space-y-6">
+      {Array.from({ length: 3 }).map((_, i) => (
+        <div key={i} className="h-[120px] bg-gray-100 rounded-md animate-pulse" />
+      ))}
+    </div>
+  );
+}
+
+export function CartSummarySkeleton() {
+  return (
+    <div className="sticky top-34 p-6 min-w-[300px] shadow-sm rounded-md space-y-6 h-[600px] bg-gray-100 animate-pulse" />
+  );
+}
