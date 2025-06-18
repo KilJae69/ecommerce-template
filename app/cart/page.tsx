@@ -2,7 +2,7 @@
 "use client";
 
 
-export const dynamic = "force-dynamic";
+
 
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
@@ -13,8 +13,10 @@ import { Container } from "@/components/shared/Container";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import GlareCTA from "@/components/shared/GlareCTA";
 import Image from "next/image";
+import { useHasHydrated } from "@/lib/hooks/useHasHydrated";
 
 export default function CartPage() {
+   const hasHydrated = useHasHydrated();
   const { items } = useCartStore();
 
   const [shipping, setShipping] = useState<"free" | "standard" | "express">(
@@ -31,6 +33,10 @@ export default function CartPage() {
     shipping === "free" ? 0 : shipping === "standard" ? 19 : 22;
   const taxes = Math.round(subtotal * 0.1);
   const total = subtotal - discount + shippingCost + taxes;
+
+  if (!hasHydrated) {
+    return null; // or a small loading spinner if you prefer
+  }
 
   return (
     <section className="relative py-12 mt-42 lg:pb-24 ">
