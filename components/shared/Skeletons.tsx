@@ -206,7 +206,7 @@ export function CartTriggerPlaceholder() {
 
 export function WishlistTriggerPlaceholder() {
   return (
-    <div className="relative size-9">
+    <div className="relative ">
       <Heart className="group-hover:scale-90 transition-all size-8 " />
       <span className="size-5 flex items-center justify-center text-xs group-hover:-translate-y-1 bg-primary-accent absolute rounded-full left-6 text-white -top-2">
         0
