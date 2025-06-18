@@ -26,7 +26,7 @@ export default function ProductCard({
             src={product.variants[0].images[0]}
             alt={product.name}
             fill
-            priority={index < 4}
+            priority={index < 2}
             className="object-cover group-hover:scale-105 transition duration-300"
           />
 
