@@ -6,71 +6,93 @@ import ProductCard from "./ProductCard";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
+const ITEMS_PER_LOAD = 12;
+
 export default function ProductsGridClient() {
   const { products } = useProductFilter();
 
-  const [showScrollTop, setShowScrollTop] = useState(false);
-  const lastScrollY = useRef(0);
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_LOAD);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
 
-  // Track scroll direction and position
+  // Auto-load more on scroll to bottom
   useEffect(() => {
-    const handleScroll = () => {
-      const currentY = window.scrollY;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const first = entries[0];
+        if (first.isIntersecting && visibleCount < products.length) {
+          setIsLoadingMore(true);
+          setTimeout(() => {
+            setVisibleCount((prev) => Math.min(prev + ITEMS_PER_LOAD, products.length));
+            setIsLoadingMore(false);
+          }, 300); // small delay for visual smoothness
+        }
+      },
+      { threshold: 1 }
+    );
 
-      if (currentY < 100) {
-        setShowScrollTop(false);
-      } else if (currentY < lastScrollY.current) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
-      }
+    if (sentinelRef.current) {
+      observer.observe(sentinelRef.current);
+    }
 
-      lastScrollY.current = currentY;
-    };
+    return () => observer.disconnect();
+  }, [products.length, visibleCount]);
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const showScrollTop = visibleCount > ITEMS_PER_LOAD;
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const visibleProducts = products.slice(0, visibleCount);
+
   return (
     <>
       <div className="grid gap-4 relative mt-8 px-2 grid-cols-2 lg:grid-cols-3">
         <AnimatePresence>
-          {products.map((product, index) => (
+          {visibleProducts.map((product, index) => (
             <motion.div
               key={product.id}
               layout
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
             >
               <ProductCard index={index} product={product} />
             </motion.div>
           ))}
         </AnimatePresence>
 
-        <AnimatePresence>
-          {showScrollTop && (
-            <motion.button
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 30 }}
-              transition={{ duration: 0.3 }}
-              onClick={scrollToTop}
-              aria-label="Scroll to top"
-              className="bg-primary cursor-pointer text-white text-sm px-4 py-2 rounded-full shadow-md fixed bottom-30 md:bottom-5 right-6 z-[3000] focus:outline-none focus:ring-2 focus:ring-primary-accent"
-            >
-              ↑ Top
-            </motion.button>
-          )}
-        </AnimatePresence>
+        {/* Sentinel for lazy loading */}
+        <div ref={sentinelRef} className="h-10 col-span-full" />
+
+        {/* Loader */}
+        {isLoadingMore && (
+          <div className="col-span-full text-center flex items-center justify-center gap-3 text-sm text-primary py-4 animate-pulse">
+           <Image src="/spinning-dots.svg" alt="loader" width={36} height={36}/> Loading more products...
+          </div>
+        )}
       </div>
 
+      {/* Scroll to top FAB */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.3 }}
+            onClick={scrollToTop}
+            aria-label="Scroll to top"
+            className="bg-primary cursor-pointer text-white text-sm px-4 py-2 rounded-full shadow-md fixed bottom-30 md:bottom-5 right-6 z-[3000] focus:outline-none focus:ring-2 focus:ring-primary-accent"
+          >
+            ↑ Top
+          </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* Empty state */}
       {products.length === 0 && (
         <div className="w-full flex items-center flex-col justify-center text-center mt-12 px-4">
           <Image

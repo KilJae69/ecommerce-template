@@ -87,7 +87,7 @@ const hasHydrated = useHasHydrated();
         )}
       >
         {loading ? (
-          <Image src="/loader.svg" alt="loader" width={20} height={20} />
+          <Image src="/loader.svg" alt="loader" className="fill-rose-500" width={20} height={20} />
         ) : wished ? (
           <HeartIcon className="w-5 h-5 text-rose-500 fill-rose-500" />
         ) : (
