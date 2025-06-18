@@ -12,13 +12,13 @@ import { Container } from "./shared/Container";
 
 // import SearchInput from "./shared/SearchInput";
 import NavModal from "./NavModal";
-// import CartModal from "./CartModal";
+import CartModal from "./CartModal";
 import { FaRegUser } from "react-icons/fa";
 import { ScrollProgress } from "./ui/scroll-progress";
 import GlobalSearch from "./shared/GlobalSearch";
 import { useHeaderScroll } from "@/lib/hooks/useHeaderScroll";
 import { GlobalSearchSkeleton } from "./shared/Skeletons";
-// import WishlistModal from "./WishlistModal";
+import WishlistModal from "./WishlistModal";
 
 // 1) hook to detect a CSS media-query
 function useMediaQuery(query: string) {
@@ -117,8 +117,8 @@ export default function Header() {
 
               <div className="flex items-center gap-4">
                 <FaRegUser className="size-6 md:size-8" />
-                {/* <WishlistModal/>
-                <CartModal /> */}
+                <WishlistModal/>
+                <CartModal />
               </div>
             </div>
             <div className="md:hidden mt-3">
@@ -162,8 +162,8 @@ export default function Header() {
 
             <div className="flex items-center gap-4">
               <FaRegUser className="size-6 md:size-8" />
-              {/* <WishlistModal/>
-              <CartModal /> */}
+              <WishlistModal/>
+              <CartModal />
             </div>
           </div>
         </Container>
