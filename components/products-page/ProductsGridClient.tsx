@@ -10,6 +10,8 @@ const ITEMS_PER_LOAD = 12;
 
 export default function ProductsGridClient() {
   const { products } = useProductFilter();
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const lastScrollY = useRef(0);
 
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_LOAD);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
@@ -23,7 +25,9 @@ export default function ProductsGridClient() {
         if (first.isIntersecting && visibleCount < products.length) {
           setIsLoadingMore(true);
           setTimeout(() => {
-            setVisibleCount((prev) => Math.min(prev + ITEMS_PER_LOAD, products.length));
+            setVisibleCount((prev) =>
+              Math.min(prev + ITEMS_PER_LOAD, products.length)
+            );
             setIsLoadingMore(false);
           }, 300); // small delay for visual smoothness
         }
@@ -38,7 +42,23 @@ export default function ProductsGridClient() {
     return () => observer.disconnect();
   }, [products.length, visibleCount]);
 
-  const showScrollTop = visibleCount > ITEMS_PER_LOAD;
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+
+      // If user is not near the top and is scrolling upward, show the button
+      if (currentY > 100 && currentY < lastScrollY.current) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+
+      lastScrollY.current = currentY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -70,7 +90,13 @@ export default function ProductsGridClient() {
         {/* Loader */}
         {isLoadingMore && (
           <div className="col-span-full text-center flex items-center justify-center gap-3 text-sm text-primary py-4 animate-pulse">
-           <Image src="/spinning-dots.svg" alt="loader" width={36} height={36}/> Loading more products...
+            <Image
+              src="/spinning-dots.svg"
+              alt="loader"
+              width={36}
+              height={36}
+            />{" "}
+            Loading more products...
           </div>
         )}
       </div>
@@ -102,11 +128,13 @@ export default function ProductsGridClient() {
             height={240}
             className="mb-6"
           />
-          <h2 className="text-2xl font-semibold mb-4">Hmm... no results found</h2>
+          <h2 className="text-2xl font-semibold mb-4">
+            Hmm... no results found
+          </h2>
           <p className="text-gray-500 max-w-md">
-            We couldn’t find any products that match your current search or filter
-            settings. Try adjusting your filters or browse our full collection to
-            discover more items.
+            We couldn’t find any products that match your current search or
+            filter settings. Try adjusting your filters or browse our full
+            collection to discover more items.
           </p>
         </div>
       )}

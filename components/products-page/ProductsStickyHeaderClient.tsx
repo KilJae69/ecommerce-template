@@ -29,7 +29,7 @@ export default function ProductsStickyHeaderClient() {
   };
   return (
     <m.div
-      className="py-3 z-10 px-2 hidden md:block sticky bg-white  w-full "
+      className="py-3 z-20 px-2 hidden md:block sticky bg-white  w-full "
       animate={{
         top: positions.desktop.totalHeight,
       }}
