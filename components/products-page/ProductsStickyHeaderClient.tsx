@@ -59,7 +59,7 @@ export default function ProductsStickyHeaderClient() {
           <Suspense fallback={<SortBySelectSkeleton />}>
             <SortBySelect />
           </Suspense>
-          <div>View</div>
+         
         </div>
       </div>
     </m.div>

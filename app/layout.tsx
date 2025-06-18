@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-
+import  { Toaster } from 'react-hot-toast';
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { domAnimation, LazyMotion } from "motion/react";
@@ -33,7 +33,7 @@ export default async function RootLayout({
           <UnifiedStoreProvider>
             
               <InnerLayout>{children}</InnerLayout>
-            
+            <Toaster />
           </UnifiedStoreProvider>
         </LazyMotion>
       </body>

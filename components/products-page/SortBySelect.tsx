@@ -33,10 +33,10 @@ export default function SortBySelect() {
 
   return (
     <Select value={current} onValueChange={handleChange} disabled={isPending}>
-      <SelectTrigger className="w-[150px] cursor-pointer">
+      <SelectTrigger className="w-[160px] bg-primary md:bg-transparent px-4 text-white md:text-primary rounded-full text-md cursor-pointer font-semibold tracking-wider border-none shadow-none ">
         <SelectValue placeholder="Sort by" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="bg-primary z-[4000] text-white">
         {sortOptions.map((option) => (
           <SelectItem key={option.value} className="cursor-pointer" value={option.value}>
             {option.label}

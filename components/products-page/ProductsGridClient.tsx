@@ -38,7 +38,7 @@ export default function ProductsGridClient() {
 
   return (
     <>
-      <div className="grid gap-4 relative mt-8 px-2 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 relative mt-8 px-2 grid-cols-2 lg:grid-cols-3">
         <AnimatePresence>
           {products.map((product, index) => (
             <motion.div
@@ -63,7 +63,7 @@ export default function ProductsGridClient() {
               transition={{ duration: 0.3 }}
               onClick={scrollToTop}
               aria-label="Scroll to top"
-              className="bg-primary cursor-pointer text-white text-sm px-4 py-2 rounded-full shadow-md fixed bottom-30 md:bottom-5 right-6 z-[4000] focus:outline-none focus:ring-2 focus:ring-primary-accent"
+              className="bg-primary cursor-pointer text-white text-sm px-4 py-2 rounded-full shadow-md fixed bottom-30 md:bottom-5 right-6 z-[3000] focus:outline-none focus:ring-2 focus:ring-primary-accent"
             >
               ↑ Top
             </motion.button>

@@ -6,6 +6,7 @@ import { useScroll, useMotionValueEvent, m } from "motion/react";
 
 import ActiveFiltersBar from "./ActiveFiltersBar";
 import MobileFilterDrawer from "./MobileFilterDrawer";
+import SortBySelect from "./SortBySelect";
 
 export default function MobileFiltersBar() {
   //
@@ -70,12 +71,7 @@ export default function MobileFiltersBar() {
       {/* ─────────────────────────────── */}
       <div className="flex w-full justify-between">
         <MobileFilterDrawer />
-        <button
-          type="button"
-          className="px-4 py-2 bg-gray-100 rounded-md shadow-sm hover:bg-gray-200 text-sm"
-        >
-          Sort
-        </button>
+        <SortBySelect/>
       </div>
     </m.div>
   );

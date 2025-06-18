@@ -14,7 +14,7 @@ export default function ProductInfoTabs() {
 
   return (
     <div>
-      <h2 className="text-xl md:text-3xl font-semibold mb-6">Product Info</h2>
+      <h2 className="text-xl md:text-3xl text-gradient font-semibold mb-6">Product Info</h2>
 
       <Tabs defaultValue="overview" className="w-full">
         <TabsList className="mb-6 space-x-4">

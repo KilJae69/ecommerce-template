@@ -18,6 +18,7 @@ import { ScrollProgress } from "./ui/scroll-progress";
 import GlobalSearch from "./shared/GlobalSearch";
 import { useHeaderScroll } from "@/lib/hooks/useHeaderScroll";
 import { GlobalSearchSkeleton } from "./shared/Skeletons";
+import WishlistModal from "./WishlistModal";
 
 // 1) hook to detect a CSS media-query
 function useMediaQuery(query: string) {
@@ -116,6 +117,7 @@ export default function Header() {
 
               <div className="flex items-center gap-4">
                 <FaRegUser className="size-6 md:size-8" />
+                <WishlistModal/>
                 <CartModal />
               </div>
             </div>
@@ -160,6 +162,7 @@ export default function Header() {
 
             <div className="flex items-center gap-4">
               <FaRegUser className="size-6 md:size-8" />
+              <WishlistModal/>
               <CartModal />
             </div>
           </div>

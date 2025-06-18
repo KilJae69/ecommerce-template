@@ -34,7 +34,17 @@ const createAuthSlice: StateCreator<
 });
 
 // ── Cart Slice
-export type CartItem = { id: string; name: string; price: number; quantity: number };
+export type CartItem = {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string;
+  color: string;
+  size: string;
+  slug:string;
+  brand:string
+};
 
 export type CartState = {
   items: CartItem[];
@@ -44,6 +54,7 @@ export type CartActions = {
   addItem: (item: CartItem) => void;
   removeItem: (id: string) => void;
   clearCart: () => void;
+   updateItemQuantity: (id: string, quantity: number) => void;
 };
 
 export type CartSlice = CartState & CartActions;
@@ -69,13 +80,55 @@ const createCartSlice: StateCreator<
   },
   removeItem: (id) => set({ items: get().items.filter((i) => i.id !== id) }),
   clearCart: () => set({ items: [] }),
+  updateItemQuantity: (id, quantity) => {
+  set(state => ({
+    items: state.items.map(item =>
+      item.id === id ? { ...item, quantity } : item
+    )
+  }));
+},
+});
+
+// ── Wishlist Slice
+export type WishlistItem = Omit<CartItem, 'quantity'>;
+
+export type WishlistState = {
+  wishlist: WishlistItem[];
+};
+
+export type WishlistActions = {
+  addToWishlist: (item: WishlistItem) => void;
+  removeFromWishlist: (id: string) => void;
+  isWishlisted: (id: string) => boolean;
+};
+
+export type WishlistSlice = WishlistState & WishlistActions;
+
+const createWishlistSlice: StateCreator<
+  UnifiedStore,
+  [],
+  [],
+  WishlistSlice
+> = (set, get) => ({
+  wishlist: [],
+  addToWishlist: (item) => {
+    if (!get().wishlist.some((w) => w.id === item.id)) {
+      set((state) => ({ wishlist: [...state.wishlist, item] }));
+    }
+  },
+  removeFromWishlist: (id) => {
+    set((state) => ({ wishlist: state.wishlist.filter((w) => w.id !== id) }));
+  },
+  isWishlisted: (id) => {
+    return get().wishlist.some((w) => w.id === id);
+  },
 });
 
 /* ────────────────
    Unified Store
 ──────────────── */
 
-export type UnifiedStore = AuthSlice & CartSlice;
+export type UnifiedStore = AuthSlice & CartSlice & WishlistSlice;
 
 export const createUnifiedStore = () =>
   createStore<UnifiedStore>()(
@@ -83,6 +136,7 @@ export const createUnifiedStore = () =>
       (...a) => ({
         ...createAuthSlice(...a),
         ...createCartSlice(...a),
+        ...createWishlistSlice(...a),
       }),
       {
         name: 'unified-store',
@@ -91,6 +145,7 @@ export const createUnifiedStore = () =>
           isAuthenticated: state.isAuthenticated,
           user: state.user,
           items: state.items,
+           wishlist: state.wishlist,
         }),
       }
     )

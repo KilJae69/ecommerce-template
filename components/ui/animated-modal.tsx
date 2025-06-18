@@ -79,7 +79,7 @@ export const ModalBody = ({
   children,
   className,
   side = "left",
-  widthClass = "w-[320px]",
+  widthClass = "w-full max-w-[380px]",
 }: {
   children: ReactNode;
   className?: string;
@@ -109,12 +109,16 @@ export const ModalBody = ({
     <AnimatePresence>
       {open && (
         <m.div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
+          aria-describedby="modal-description"
           initial={{ x: offsetX }}
           animate={{ x: "0" }}
           exit={{ x: offsetX }}
           transition={{ type: "tween", duration: 0.2 }}
           className={cn(
-            `fixed top-0 bottom-0 ${positionClass} z-[2000] flex items-center justify-center overflow-hidden shadow-2xl`,
+            `fixed top-0 bottom-0 ${positionClass} z-[5000] flex items-center justify-center overflow-hidden shadow-2xl`,
             widthClass
           )}
           style={{ height: "100vh" }}

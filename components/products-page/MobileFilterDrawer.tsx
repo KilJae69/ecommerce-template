@@ -8,14 +8,16 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 // import { Button } from "../ui/button";
-import { FaXmark } from "react-icons/fa6";
+import { FaFilter, FaXmark } from "react-icons/fa6";
 
 import FilterPanel from "./FilterPanel";
 
 export default function MobileFilterDrawer() {
   return (
     <Drawer>
-      <DrawerTrigger>Filters</DrawerTrigger>
+      <DrawerTrigger className="bg-primary text-lg flex items-center gap-2 px-4 text-white  rounded-full">
+        <FaFilter />
+        Filters</DrawerTrigger>
       <DrawerContent className="bg-white px-4 pb-4">
         <DrawerHeader className="flex border-b border-dashed pb-4 mb-4 flex-row text-lg justify-between items-center">
           <DrawerTitle>Filters</DrawerTitle>

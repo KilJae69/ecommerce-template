@@ -15,4 +15,13 @@ export const useCartStore = () =>
     addItem: state.addItem,
     removeItem: state.removeItem,
     clearCart: state.clearCart,
+    updateItemQuantity:state.updateItemQuantity
+  })));
+
+  export const useWishlistStore = () =>
+  useUnifiedStore(useShallow((state) => ({
+    wishlist: state.wishlist,
+    addToWishlist: state.addToWishlist,
+    removeFromWishlist: state.removeFromWishlist,
+    isWishlisted: state.isWishlisted,
   })));
