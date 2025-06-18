@@ -2,7 +2,7 @@
 "use client";
 
 import { Eye, MoreVertical, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import AddToCartButton from "../shared/AddToCartButton";
 import ToggleWishlistButton from "../ToggleWishlistButton";
@@ -33,6 +33,7 @@ export default function ProductCardActions({
 }: ProductCardActionsProps) {
   const isTouchDevice = useIsTouchDevice();
   const [showActions, setShowActions] = useState(false);
+  const actionsRef = useRef<HTMLDivElement>(null);
 
   const baseProps = {
     productId,
@@ -45,11 +46,31 @@ export default function ProductCardActions({
     brand,
   };
 
+  // Close on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        actionsRef.current &&
+        !actionsRef.current.contains(event.target as Node)
+      ) {
+        setShowActions(false);
+      }
+    }
+
+    if (showActions) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showActions]);
+
   return (
     <div className="inset-0 absolute z-10">
       <div className="absolute top-2 right-2 flex flex-col items-end gap-2">
         {isTouchDevice ? (
-          <>
+          <div ref={actionsRef} className="flex flex-col items-end gap-2">
             {!showActions && (
               <button
                 onClick={(e) => {
@@ -100,7 +121,7 @@ export default function ProductCardActions({
                 </m.div>
               )}
             </AnimatePresence>
-          </>
+          </div>
         ) : (
           // Desktop hover stack
           <>

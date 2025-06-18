@@ -7,6 +7,7 @@ import { useScroll, useMotionValueEvent, m } from "motion/react";
 import ActiveFiltersBar from "./ActiveFiltersBar";
 import MobileFilterDrawer from "./MobileFilterDrawer";
 import SortBySelect from "./SortBySelect";
+import { SortBySelectSkeleton } from "../shared/Skeletons";
 
 export default function MobileFiltersBar() {
   //
@@ -61,8 +62,7 @@ export default function MobileFiltersBar() {
       {/* ─────────────────────────────── */}
       <div className="flex-1 overflow-x-auto pb-2">
         <Suspense>
-
-        <ActiveFiltersBar />
+          <ActiveFiltersBar />
         </Suspense>
       </div>
 
@@ -71,7 +71,9 @@ export default function MobileFiltersBar() {
       {/* ─────────────────────────────── */}
       <div className="flex w-full justify-between">
         <MobileFilterDrawer />
-        <SortBySelect/>
+        <Suspense fallback={<SortBySelectSkeleton />}>
+          <SortBySelect />
+        </Suspense>
       </div>
     </m.div>
   );
