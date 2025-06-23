@@ -49,7 +49,7 @@ function ModalFooterMain({ hasItems }: { hasItems: boolean }) {
   };
 
   return (
-    <ModalFooter className="flex flex-col gap-4 pt-4 border-t">
+    <ModalFooter className="flex flex-col gap-4 py-8 border-t border-gray-300">
       {hasItems ? (
         <>
           <InteractiveHoverButton dark onClick={handleAddAllToCart}>

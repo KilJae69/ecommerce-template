@@ -28,7 +28,7 @@ export function SingleProductGallery({
   return (
     <div className="flex relative   flex-col-reverse lg:flex-row gap-4">
       {/* Thumbnails */}
-      <div className="flex flex-wrap lg:flex-nowrap lg:flex-col justify-between gap-2">
+      <div className="flex flex-wrap lg:flex-nowrap lg:flex-col lg:justify-between gap-2">
         {images.map((src, i) => (
           <div
             key={i}

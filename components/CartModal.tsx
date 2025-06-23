@@ -49,7 +49,7 @@ function ModalFooterMain({ items }: { items: CartItem[] }) {
   };
   return (
     <div className="mt-auto">
-      <ModalFooter className="flex flex-col gap-2">
+      <ModalFooter className="flex flex-col py-8 gap-2">
         <div className="mt-auto w-full flex justify-between ">
           <div className="w-full">
             <p className="font-semibold mb-2">Subtotal:</p>

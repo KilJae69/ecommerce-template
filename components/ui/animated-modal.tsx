@@ -61,6 +61,18 @@ export const ModalTrigger = ({
     }
   }, [open, triggerRef]);
 
+  useEffect(() => {
+  if (open) {
+    document.body.classList.add("modal-open");
+  } else {
+    document.body.classList.remove("modal-open");
+  }
+
+  return () => {
+    document.body.classList.remove("modal-open");
+  };
+}, [open]);
+
   return (
     <button
       onClick={() => setOpen((prev) => !prev)}
@@ -121,7 +133,7 @@ export const ModalBody = ({
             `fixed top-0 bottom-0 ${positionClass} z-[5000] flex items-center justify-center overflow-hidden shadow-2xl`,
             widthClass
           )}
-          style={{ height: "100vh" }}
+          
         >
           <div
             ref={modalRef}

@@ -18,6 +18,10 @@
 
   
 }
+body.modal-open {
+  overflow: hidden;
+  position: relative;
+}
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;

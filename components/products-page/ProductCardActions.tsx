@@ -1,7 +1,7 @@
 // components/ProductCardActions.tsx
 "use client";
 
-import { Eye, MoreVertical, X } from "lucide-react";
+import {  MoreVertical, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import AddToCartButton from "../shared/AddToCartButton";
@@ -105,7 +105,7 @@ export default function ProductCardActions({
                     <X className="w-5 h-5 text-gray-700" />
                   </button>
 
-                  <button
+                  {/* <button
                     onClick={(e) => {
                       e.stopPropagation();
                       e.preventDefault();
@@ -114,7 +114,7 @@ export default function ProductCardActions({
                     className="bg-white p-1.5 rounded-full shadow-md hover:bg-gray-100"
                   >
                     <Eye className="w-5 h-5 text-gray-800" />
-                  </button>
+                  </button> */}
 
                   <AddToCartButton {...baseProps} small />
                   <ToggleWishlistButton {...baseProps} small />
@@ -125,7 +125,7 @@ export default function ProductCardActions({
         ) : (
           // Desktop hover stack
           <>
-            <div
+            {/* <div
               className={cn(
                 "transition-all duration-300 ease-out",
                 "opacity-0 translate-x-3",
@@ -143,7 +143,7 @@ export default function ProductCardActions({
               >
                 <Eye className="w-5 h-5 text-gray-800" />
               </button>
-            </div>
+            </div> */}
 
             <div
               className={cn(
