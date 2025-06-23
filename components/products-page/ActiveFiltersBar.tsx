@@ -38,6 +38,7 @@ export default function ActiveFiltersBar() {
     [searchParams]
   );
 
+  const rawQuery = searchParams.get("query")?.trim() || "";
   // Price: if both minPrice and maxPrice are present and not default,
   // we will render a single pill for Price.
   const rawMin = useMemo(() => {
@@ -94,20 +95,39 @@ export default function ActiveFiltersBar() {
     selectedGenders.length > 0 ||
     selectedColors.length > 0 ||
     selectedSizes.length > 0 ||
-    priceIsActive;
+    priceIsActive ||
+    rawQuery.length > 0;
 
   if (!hasAnyFilter) {
-    return null;
+    return (
+      <div className="border-b text-center italic border-gray-300 ">You have no active filters</div>
+    );
   }
 
   return (
-    <div
-      className="md:hidden absolute top-0 left-0 right-0 w-full px-4 py-2 flex flex-wrap items-center gap-2"
-    >
+    <div className="md:hidden absolute top-0 left-0 right-0 w-full px-4 py-2 flex flex-wrap items-center gap-2">
       {/* Label on the left (optional) */}
       {/* <div className="mr-2 font-medium text-neutral-700">Active Filters:</div> */}
 
       <div className="flex flex-nowrap py-2 overflow-x-auto gap-2">
+        <ActiveFilterPill
+          invert
+          label={`Clear All`}
+          onClear={clearAllFilters}
+        />
+
+        {rawQuery && (
+          <ActiveFilterPill
+            key="query"
+            label={`Search: "${rawQuery}"`}
+            onClear={() => {
+              const updated = new URLSearchParams(searchParams.toString());
+              updated.delete("query");
+              router.push(`/collections?${updated.toString()}`);
+            }}
+          />
+        )}
+
         {/* ───────────────────────────────────────────────────────────── */}
         {/* Render one “pill” per selected brand */}
         {selectedBrands.map((b) => (
@@ -157,7 +177,6 @@ export default function ActiveFiltersBar() {
             onClear={removePrice}
           />
         )}
-        <ActiveFilterPill label={`Clear All`} onClear={clearAllFilters} />
       </div>
     </div>
   );

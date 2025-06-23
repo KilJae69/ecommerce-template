@@ -13,7 +13,7 @@ import { Container } from "./shared/Container";
 // import SearchInput from "./shared/SearchInput";
 import NavModal from "./NavModal";
 import CartModal from "./CartModal";
-import { FaRegUser } from "react-icons/fa";
+// import { FaRegUser } from "react-icons/fa";
 import { ScrollProgress } from "./ui/scroll-progress";
 import GlobalSearch from "./shared/GlobalSearch";
 import { useHeaderScroll } from "@/lib/hooks/useHeaderScroll";
@@ -117,7 +117,7 @@ export default function Header() {
               </div>
 
               <div className="flex items-center gap-4">
-                <FaRegUser className="size-6 md:size-8" />
+                {/* <FaRegUser className="size-6 md:size-8" /> */}
                 <WishlistModal/>
                 <CartModal />
               </div>
@@ -162,7 +162,7 @@ export default function Header() {
             </div>
 
             <div className="flex items-center gap-4">
-              <FaRegUser className="size-6 md:size-8" />
+              {/* <FaRegUser className="size-6 md:size-8" /> */}
               <WishlistModal/>
               <CartModal />
             </div>

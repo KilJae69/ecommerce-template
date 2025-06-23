@@ -20,11 +20,11 @@ export function VariantSelector({ slug, variants }: VariantSelectorProps) {
 
   // read initial values from URL
   const initialColor = searchParams.get("color") ?? "";
-  const initialSize  = searchParams.get("size")  ?? "";
+  const initialSize = searchParams.get("size") ?? "";
 
   // optimistic local state
-  const [color, setColor]       = useState(initialColor);
-  const [size,  setSize]        = useState(initialSize);
+  const [color, setColor] = useState(initialColor);
+  const [size, setSize] = useState(initialSize);
   const [quantity, setQuantity] = useState(1);
 
   // transition API for non-urgent navigation
@@ -43,7 +43,11 @@ export function VariantSelector({ slug, variants }: VariantSelectorProps) {
 
   // ← ONLY THIS LINE CHANGED ←
   // always show every size, then gray out the ones not in stock for the selected color
-  const sizes = Array.from(new Set(variants.flatMap((v) => v.sizes)));
+  const sizes = Array.from(
+    new Set(variants.flatMap((v) => v.sizes.map(Number)))
+  )
+    .sort((a, b) => a - b)
+    .map(String);
 
   // find the “current” variant record so we can read its stock
   const currentVariant = variants.find((v) => v.color === color);

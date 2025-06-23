@@ -49,11 +49,11 @@ console.log(JSON.stringify(item),"item in cart card");
           <p className="text-xs italic text-muted-foreground">
             Size: {item.size} / Color: {item.color}
           </p>
-          {page ? <Ratings small/> : <Ratings/>}
+          <Ratings/>
           
         </div>
-      </div>
      {page && <LogoFactory small brand={item.brand} />}
+      </div>
           </Link>
 
 

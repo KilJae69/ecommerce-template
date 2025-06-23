@@ -31,7 +31,7 @@ export default function LogoFactory({
 
   return (
     <div className="flex items-center gap-2">
-      <div className={cn("border flex items-center p-1 justify-center  relative rounded-full", `${small ? "size-8": "size-12"}`)}>
+      <div className={cn("border flex items-center shrink-0 p-1 justify-center  relative rounded-full", `${small ? "size-6": "size-12"}`)}>
         <Image
           src={logoSrc}
           alt={`${brandLabel} logo`}
@@ -46,7 +46,7 @@ export default function LogoFactory({
         fill="currentColor"
         strokeWidth="0"
         viewBox="0 0 256 256"
-        className="text-primary-accent"
+        className="text-primary-accent shrink-0"
         height="1em"
         width="1em"
         xmlns="http://www.w3.org/2000/svg"
