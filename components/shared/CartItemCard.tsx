@@ -13,7 +13,7 @@ import LogoFactory from '../products-page/LogoFactory';
 
 export default function CartItemCard({ item,page = false }: { item: CartItem; page?:boolean }) {
   const { addItem, removeItem,updateItemQuantity } = useCartStore();
-console.log(JSON.stringify(item),"item in cart card");
+
   const increase = () => addItem({ ...item, quantity: 1 });
 
  const decrease = () => {

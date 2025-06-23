@@ -15,7 +15,7 @@ import toast from "react-hot-toast";
 function ModalHeader() {
   const { setOpen } = useModal();
   return (
-    <div className="flex py-4 px-4 justify-between border-b border-gray-300 items-center bg-white">
+    <div className="flex py-4 px-4 justify-between border-b h-[80px] border-gray-300 items-center bg-white">
       <h3 id="wishlist-title" className="font-semibold tracking-wider">
         Your Wishlist
       </h3>

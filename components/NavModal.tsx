@@ -50,7 +50,7 @@ function NavigationLinks() {
 function ModalHeader() {
   const { setOpen } = useModal();
   return (
-    <div className=" flex py-2 px-2 justify-between items-center bg-white ">
+    <div className=" flex py-2 px-2 justify-between items-center bg-white h-[80px]">
       <Link
         href="/"
         onClick={() => setOpen(false)}

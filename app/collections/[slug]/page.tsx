@@ -33,7 +33,6 @@ export default async function ProductPage(props: PageProps) {
 
   const selectedSize =
     size && colorVariant.sizes.includes(size) ? size : colorVariant.sizes[0];
-console.log(product);
   return (
     <section className="relative py-12 mt-42 lg:pb-24">
       <Container>
