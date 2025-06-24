@@ -132,7 +132,7 @@ export default function CheckoutPage() {
                   <strong className="">Card:</strong> **** **** **** {methods.getValues("cardNumber")?.slice(-4)}
                 </p>
               </div> */}
-              <div className="w-full flex gap-4 mt-6 ">
+              <div className="w-full flex flex-col sm:flex-row gap-4 mt-6 ">
                 <InteractiveHoverButton invert className="w-full" href="/collections">
                   Continue shopping
                 </InteractiveHoverButton>
