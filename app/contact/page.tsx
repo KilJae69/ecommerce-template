@@ -1,4 +1,4 @@
-import ContactForm from "@/components/contact/ContactForm";
+// import ContactForm from "@/components/contact/ContactForm";
 import VanishingContactForm from "@/components/contact/VanishingContactForm";
 // import VanishingContactForm from "@/components/contact/VanishingContactForm";
 import { Container } from "@/components/shared/Container";
