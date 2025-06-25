@@ -9,7 +9,7 @@
   --color-secondary-bg: #f9fafb;
   --color-paragraph-light: #9ca3af;
   --text-h1: clamp(2rem, 1.2083rem + 3.9583vw, 4.375rem);
-  --text-h2: clamp(1.25rem, 0.7708rem + 2.3958vw, 2.6875rem);
+  --text-h2: clamp(1.5rem, 0.7708rem + 2.3958vw, 2.6875rem);
   --text-subtitle: clamp(0.75rem, 0.6667rem + 0.4167vw, 1rem);
   --text-paragraph: clamp(1rem, 2.5vw, 1.25rem);
 
@@ -95,4 +95,36 @@ body.modal-open {
 }
 .swiper-button-next {
   color: #d4af37 !important;
+}
+
+@layer utilities {
+  /* custom timing function utility */
+  .ease-minor-spring {
+    --tw-transition-timing-function: cubic-bezier(0.18, 0.89, 0.82, 1.04);
+  }
+
+  /* keyframes */
+  @keyframes reveal-up {
+    0%   { opacity: 0; transform: translateY(80%); }
+    100% { opacity: 1; transform: translateY(0);    }
+  }
+  @keyframes reveal-down {
+    0%   { opacity: 0; transform: translateY(-80%); }
+    100% { opacity: 1; transform: translateY(0);     }
+  }
+  @keyframes content-blur {
+    0%   { filter: blur(0.3rem); }
+    100% { filter: blur(0);     }
+  }
+
+  /* animation utilities */
+  .animate-reveal-up {
+    animation: reveal-up 0.5s var(--tw-transition-timing-function) both;
+  }
+  .animate-reveal-down {
+    animation: reveal-down 0.5s var(--tw-transition-timing-function) both;
+  }
+  .animate-content-blur {
+    animation: content-blur 0.5s var(--tw-transition-timing-function) both;
+  }
 }

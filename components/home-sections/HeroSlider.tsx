@@ -9,6 +9,8 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 import HeroButton from "./HeroButton";
 import Image from "next/image";
+import { heroFeaturesData } from "@/constants/heroFeaturesData";
+
 
 export default function HeroSlider() {
   const [idx, setIdx] = useState(0);
@@ -46,29 +48,39 @@ export default function HeroSlider() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.5 }}
-                className="flex flex-col min-h-[404px] items-center lg:items-start justify-center"
+                className="flex flex-col min-h-[420px] md:min-h-[452px] lg:min-h-[420px] items-center lg:items-start justify-center"
               >
                 {/* fixed-size logo box */}
-                <div className=" mb-2 size-18">
-                  <slide.Logo className="h-full w-full object-contain" />
-                </div>
-
-                <h1 className="text-4xl lg:text-5xl max-w-lg font-bold mb-4">
-                  <span className="text-primary-accent">{slide.brand}</span>{" "}
-                  <span>{slide.title}</span>
+               
+                  <div className=" mb-2 size-18">
+                    <slide.Logo className="h-full w-full object-contain" />
+                  </div>
+           
+                <h1 className="text-4xl md:text-6xl lg:text-5xl max-w-lg font-bold mb-4">
+                 
+                    <span className="text-primary-accent">{slide.brand}</span>
+                 {" "}
+                    <span className="text-gradient">{slide.title}</span>
+                 
                 </h1>
-                <p className="max-w-md mx-auto lg:mx-0 mb-6">
-                  {slide.description}
-                </p>
-                <HeroButton />
+              
+                  <p className="max-w-md mx-auto text-paragraph lg:mx-0 mb-6">
+                    {slide.description}
+                  </p>
+                
+              
+                
+                    <HeroButton />
+                
+               
               </m.div>
             </AnimatePresence>
           </div>
 
           {/* Image & Controls */}
-          <div className="w-full lg:w-1/2 mt-10 lg:mt-0 relative">
+          <div className="w-full lg:w-1/2 mt-10 lg:mt-0 relative max-w-[600px]">
             {/* image wrapper with fixed aspect-ratio to avoid jumps */}
-            <div className="mx-auto aspect-square">
+            <div className="mx-auto aspect-square ">
               <AnimatePresence mode="wait">
                 <m.div
                   key={`badge-${slide.key}`}
@@ -122,6 +134,32 @@ export default function HeroSlider() {
           </div>
         </div>
       </Container>
+      <div className="w-full px-4 flex items-center justify-center py-8  bg-primary relative z-10">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y divide-gray-300 md:divide-y-0 gap-y-6 lg:gap-y-0 lg:divide-x container mx-auto px-4 lg:px-12 py-12 bg-white rounded-3xl overflow-hidden">
+          {heroFeaturesData.map((feature) => (
+            <li
+              key={feature.key}
+              className="
+        flex items-center gap-4 p-6 text-center sm:text-left
+        md:even:border-l md:even:border-gray-300 lg:even:border-l-0
+      "
+            >
+              <Image
+                src={feature.icon}
+                alt={`feature icon ${feature.title}`}
+                width={52}
+                height={52}
+              />
+              <div className="flex flex-col">
+                <p className="text-lg font-semibold whitespace-nowrap text-primary-accent">
+                  {feature.title}
+                </p>
+                <p className="italic text-gray-400">{feature.description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
