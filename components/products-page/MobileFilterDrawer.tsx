@@ -2,7 +2,7 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
- // DrawerFooter,
+  // DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
@@ -17,16 +17,18 @@ export default function MobileFilterDrawer() {
     <Drawer>
       <DrawerTrigger className="bg-primary text-lg flex items-center gap-2 px-4 text-white  rounded-full">
         <FaFilter />
-        Filters</DrawerTrigger>
-      <DrawerContent className="bg-white px-4 pb-4">
+        Filters
+      </DrawerTrigger>
+      <DrawerContent className="bg-white  pb-4">
         <DrawerHeader className="flex border-b border-dashed pb-4 mb-4 flex-row text-lg justify-between items-center">
           <DrawerTitle>Filters</DrawerTitle>
           <DrawerClose className="bg-primary text-white rounded-full p-1">
             <FaXmark />
           </DrawerClose>
         </DrawerHeader>
-
-        <FilterPanel />
+        <div className="px-4 overflow-y-auto">
+          <FilterPanel />
+        </div>
 
         {/* <DrawerFooter>
           <Button>Submit</Button>

@@ -92,16 +92,19 @@ export default function HeroSlider() {
                 >
                   <Image src="/icons/quality.png" alt="quality badge" fill />
                 </m.div>
-                <m.img
-                  key={slide.img}
-                  src={slide.img}
-                  alt={slide.title}
-                  initial={{ opacity: 0, scale: 0.8 }}
+                </AnimatePresence>
+                <AnimatePresence mode="wait">
+                <m.div
+                key={slide.img}
+                initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.6 }}
-                  className="h-full z-10 relative w-full object-contain"
-                />
+                  className="relative size-full aspect-square"
+                >
+                  <Image fill priority className="h-full z-10 relative w-full object-contain" src={slide.img} alt={slide.title}/>
+                </m.div>
+                
               </AnimatePresence>
             </div>
 
@@ -149,6 +152,7 @@ export default function HeroSlider() {
                 alt={`feature icon ${feature.title}`}
                 width={52}
                 height={52}
+                priority
               />
               <div className="flex flex-col">
                 <p className="text-lg font-semibold whitespace-nowrap text-primary-accent">

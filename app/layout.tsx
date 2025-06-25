@@ -27,7 +27,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body
-        className={`${poppins.className} antialiased flex min-h-[10000px] flex-col `}
+        className={`${poppins.className} antialiased flex min-h-full flex-col `}
       >
         <LazyMotion features={domAnimation}>
           <UnifiedStoreProvider>

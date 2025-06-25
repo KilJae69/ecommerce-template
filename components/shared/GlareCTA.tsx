@@ -2,10 +2,12 @@ import Image from "next/image";
 import SpotlightCard from "../ui/spotlight-card";
 import { InteractiveHoverButton } from "../ui/interactive-hover-button";
 import { FadeIn, FadeInStagger } from "./FadeIn";
+import { Container } from "./Container";
 
 export default function GlareCTA() {
   return (
-    <section className="pt-12 lg:pt-24">
+    <section className="my-12 lg:my-24">
+      <Container>
       <SpotlightCard
         className="relative h-[400px]  shadow-2xl w-full bg-transparent"
         spotlightColor={"rgba(212, 175, 55, 0.4)"}
@@ -47,6 +49,7 @@ export default function GlareCTA() {
           </FadeInStagger>
         </div>
       </SpotlightCard>
+      </Container>
     </section>
   );
 }

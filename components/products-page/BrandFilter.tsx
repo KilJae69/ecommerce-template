@@ -28,28 +28,28 @@ export default function BrandFilter({ value, onChange,disabled }: BrandFilterPro
       >
         <ToggleGroupItem
           value="nike"
-          className=" rounded-md md:min-h-12 border group  border-neutral-300 data-[state=on]:bg-primary-accent data-[state=on]:text-white"
+          className=" rounded-md  border group  border-neutral-300 data-[state=on]:bg-primary-accent data-[state=on]:text-white"
         >
           <NikeLogo />
         </ToggleGroupItem>
 
         <ToggleGroupItem
           value="adidas"
-          className="px-3 py-1 md:min-h-12 rounded-md group border border-neutral-300 data-[state=on]:bg-primary-accent data-[state=on]:text-white"
+          className="px-2 py-1  rounded-md group border border-neutral-300 data-[state=on]:bg-primary-accent data-[state=on]:text-white"
         >
           <AdidasLogo />
         </ToggleGroupItem>
 
         <ToggleGroupItem
           value="under-armour"
-          className="px-3 py-1 md:min-h-12 rounded-md group border border-neutral-300 data-[state=on]:bg-primary-accent data-[state=on]:text-white"
+          className="px-2 py-1  rounded-md group border border-neutral-300 data-[state=on]:bg-primary-accent data-[state=on]:text-white"
         >
           <UnderArmourLogo />
         </ToggleGroupItem>
 
         <ToggleGroupItem
           value="new-balance"
-          className="px-3 py-1 md:min-h-12 rounded-md group border border-neutral-300 data-[state=on]:bg-primary-accent data-[state=on]:text-white"
+          className="px-2 py-1  rounded-md group border border-neutral-300 data-[state=on]:bg-primary-accent data-[state=on]:text-white"
         >
           <NewBalanceLogo />
         </ToggleGroupItem>

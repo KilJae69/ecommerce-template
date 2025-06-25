@@ -58,7 +58,7 @@ export default function CartItemCard({ item,page = false }: { item: CartItem; pa
 
 
         <div className="flex items-center justify-between mt-2">
-          <span className={cn("font-semibold ", page ? "text-lg" : "text-sm")}>${item.price}.00</span>
+          <span className={cn("font-semibold ", page ? "text-lg" : "text-sm")}>${item.salePrice || item.price}.00</span>
           <div className="flex items-center gap-3">
             <button
               onClick={decrease}

@@ -9,6 +9,8 @@ import SizeFilter from "./SizeFilter";
 import ColorFilter from "./ColorFilter";
 import GenderFilter from "./GenderFilter";
 import PriceFilter from "./PriceFilter";
+import CategoryFilter from "./CategoryFilter";
+import SaleFilter from "./SaleFilter";
 
 export default function FilterPanel() {
   const router = useRouter();
@@ -36,9 +38,19 @@ export default function FilterPanel() {
     return raw ? raw.split(",").filter((v) => v.length > 0) : [];
   }, [searchParams]);
 
+  // ← new: categories
+  const selectedCategories = useMemo(() => {
+    const raw = searchParams.get("categories");
+    return raw ? raw.split(",") : [];
+  }, [searchParams]);
+
+  // ← new: onSale flag
+  const saleParam = searchParams.get("onSale");
+  const isSaleFilterOn = saleParam === "true";
+
   // For price, default to 0–500 if nothing’s in the URL yet
   const rawMin = Number(searchParams.get("minPrice") ?? "0");
-  const rawMax = Number(searchParams.get("maxPrice") ?? "500");
+  const rawMax = Number(searchParams.get("maxPrice") ?? "200");
 
   // 2) A helper to update an arbitrary “key” in URL search params
   const updateParam = (key: string, values: string[]) => {
@@ -57,6 +69,14 @@ export default function FilterPanel() {
     router.push(`/collections?${updated.toString()}`);
   };
 
+  // helper for boolean onSale
+  const updateSale = (onSale: boolean) => {
+    const updated = new URLSearchParams(searchParams.toString());
+    if (onSale) updated.set("onSale", "true");
+    else updated.delete("onSale");
+    router.push(`/collections?${updated.toString()}`);
+  };
+
   // 3) A helper to update both minPrice and maxPrice simultaneously
   const updatePriceRange = (newMin: number, newMax: number) => {
     const updated = new URLSearchParams(searchParams.toString());
@@ -71,7 +91,7 @@ export default function FilterPanel() {
 
   // “Active” means any array has at least one element, or price is outside the default range (0–500)
   const priceDefaultMin = 0;
-  const priceDefaultMax = 500;
+  const priceDefaultMax = 200;
   const priceIsActive =
     rawMin !== priceDefaultMin || rawMax !== priceDefaultMax;
 
@@ -80,6 +100,8 @@ export default function FilterPanel() {
     selectedSizes.length > 0 ||
     selectedColors.length > 0 ||
     selectedGenders.length > 0 ||
+     selectedCategories.length > 0 ||      // category
+    isSaleFilterOn || 
     priceIsActive;
 
   // ─────────────────────────────────────────────────────────────
@@ -101,13 +123,25 @@ export default function FilterPanel() {
   }
 
   return (
-    <div className=" space-y-4 md:space-y-8 ">
+    <div className=" space-y-4 md:space-y-6 ">
       {/* ─────────────────────────────────────── */}
       {/* Brand Filter */}
       {/* ─────────────────────────────────────── */}
       <BrandFilter
         value={selectedBrands}
         onChange={(newBrands) => updateParam("brands", newBrands)}
+      />
+
+       {/* ───────────── New: Category ───────────── */}
+      <CategoryFilter
+        value={selectedCategories}
+        onChange={(v) => updateParam("categories", v)}
+      />
+
+      {/* ───────────── New: On Sale ───────────── */}
+      <SaleFilter
+        value={isSaleFilterOn}
+        onChange={updateSale}
       />
 
       {/* ─────────────────────────────────────── */}
@@ -125,7 +159,7 @@ export default function FilterPanel() {
         minPrice={rawMin}
         maxPrice={rawMax}
         overallMin={0}
-        overallMax={500}
+        overallMax={200}
         step={5}
         onChange={(newMin, newMax) => updatePriceRange(newMin, newMax)}
       />

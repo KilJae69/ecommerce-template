@@ -1,6 +1,7 @@
 // hooks/useProductFilter.ts
 "use client";
-import { dummyProducts } from "@/constants/productsData";
+
+import { dummyProducts } from "@/constants/productsDataV2";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 
@@ -20,6 +21,8 @@ export function useProductFilter(): FilterResults {
     const selectedSizes  = searchParams.get("sizes")?.split(",") || [];
     const selectedColors = searchParams.get("colors")?.split(",") || [];
     const selectedGenders= searchParams.get("genders")?.split(",")||[];
+      const selectedCategories = searchParams.get("categories")?.split(",") || [];
+    const onSale     = searchParams.get("onSale") === "true";
     const minPrice       = Number(searchParams.get("minPrice")) || 0;
     const maxPrice       = Number(searchParams.get("maxPrice")) || 200;
     const sort           = searchParams.get("sort");
@@ -30,6 +33,8 @@ export function useProductFilter(): FilterResults {
       selectedSizes.length > 0 ||
       selectedColors.length > 0 ||
       selectedGenders.length > 0 ||
+       selectedCategories.length > 0 ||
+      onSale ||
       minPrice > 0 ||
       maxPrice < 200 ||
       sort
@@ -39,6 +44,10 @@ export function useProductFilter(): FilterResults {
       if (query && !product.name.toLowerCase().includes(query)) return false;
       if (selectedBrands.length > 0 && !selectedBrands.includes(product.brand)) return false;
       if (selectedGenders.length > 0 && !selectedGenders.some(g => product.gender.includes(g))) return false;
+       // category
+      if (selectedCategories.length > 0 && !selectedCategories.some(c => product.categories.includes(c))) return false;
+      // onSale toggle
+      if (onSale && !product.onSale) return false;
 
       // at least one variant must match ALL active filters
       const hasMatchingVariant = product.variants.some((variant) => {

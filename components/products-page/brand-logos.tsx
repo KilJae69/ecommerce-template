@@ -53,7 +53,7 @@ export const NewBalanceLogo = () => {
     <svg
       viewBox="0 0 192.756 192.756"
       xmlns="http://www.w3.org/2000/svg"
-      className="size-13 fill-current text-black group-data-[state=on]:text-white"
+      className="size-10 fill-current text-black group-data-[state=on]:text-white"
       fill="currentColor"
     >
       <g id="SVGRepo_iconCarrier">
@@ -80,7 +80,7 @@ export const UnderArmourLogo = () => {
       fill="currentColor"
       viewBox="0 -29.98 240 240"
       xmlns="http://www.w3.org/2000/svg"
-      className="size-10 fill-current text-black group-data-[state=on]:text-white"
+      className="size-8 fill-current text-black group-data-[state=on]:text-white"
     >
       <g id="SVGRepo_iconCarrier">
         <path d="M238.553 22.362s-6.882-5.327-29.168-13.512C189.83 1.653 174.893 0 174.893 0l.074 42.679c0 18.039-20.385 37.194-55.199 37.194h-.996c-34.81 0-55.188-19.155-55.188-37.194L63.652 0S48.729 1.652 29.166 8.85C6.881 17.035 0 22.362 0 22.362c1.652 34.229 54.826 62.43 119.263 62.445h.015c64.441-.015 117.628-28.216 119.275-62.445" />

@@ -4,24 +4,27 @@
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 interface ColorFilterProps {
-  value: string[];                     // e.g. ["black", "white"]
+  value: string[];
   onChange: (newValues: string[]) => void;
-   disabled?: boolean;
+  disabled?: boolean;
 }
 
-export default function ColorFilter({ value, onChange,disabled }: ColorFilterProps) {
-  // You can adjust this list to match your actual color‐slug conventions:
-  const allColors = [
-    { label: "Black", slug: "black" },
-    { label: "White", slug: "white" },
-    { label: "Red", slug: "red" },
-    { label: "Blue", slug: "blue" },
-    { label: "Green", slug: "green" },
-    { label: "Grey", slug: "grey" },
-    { label: "Yellow", slug: "yellow" },
-    { label: "Pink", slug: "pink" },
-  ];
+const allColors = [
+  { label: "Black", slug: "black",    bg: "bg-black" },
+  { label: "White", slug: "white",    bg: "bg-white border" },
+  { label: "Red",   slug: "red",      bg: "bg-red-500" },
+  { label: "Blue",  slug: "blue",     bg: "bg-blue-500" },
+  { label: "Green", slug: "green",    bg: "bg-green-500" },
+  { label: "Grey",  slug: "grey",     bg: "bg-gray-400" },
+  { label: "Yellow",slug: "yellow",   bg: "bg-yellow-400" },
+  { label: "Pink",  slug: "pink",     bg: "bg-pink-400" },
+];
 
+export default function ColorFilter({
+  value,
+  onChange,
+  disabled,
+}: ColorFilterProps) {
   return (
     <div className="space-y-2">
       <h3 className="text-md md:text-lg font-medium">Color</h3>
@@ -36,11 +39,14 @@ export default function ColorFilter({ value, onChange,disabled }: ColorFilterPro
           <ToggleGroupItem
             key={c.slug}
             value={c.slug}
-            className="px-3 py-1 rounded-md border border-neutral-300 
-                       data-[state=on]:bg-primary data-[state=on]:text-white"
-          >
-            {c.label}
-          </ToggleGroupItem>
+            aria-label={c.label}
+            className={`
+              w-8 h-8  first:rounded-full last:rounded-full !rounded-full border border-neutral-300
+              ${c.bg}
+              data-[state=on]:ring-2 data-[state=on]:ring-offset-1 data-[state=on]:ring-primary-accent
+              transition
+            `}
+          />
         ))}
       </ToggleGroup>
     </div>

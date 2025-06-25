@@ -4,7 +4,7 @@ import Expandable from "../ui/expandable";
 
 export default function FeaturedBrandsSection() {
   return (
-    <section className="py-12 lg:py-24">
+    <section className="my-12 lg:my-24">
       <Container>
         <div className="text-center flex gap-2 flex-col items-center mb-12">
             <MovingBorderBadge text="Our Top Picks"/>

@@ -1,11 +1,12 @@
 // components/ProductCard.tsx
-import { Product } from "@/constants/productsData";
+
 import Image from "next/image";
 import Link from "next/link";
 import LogoFactory from "./LogoFactory";
 
-
 import ProductCardActions from "./ProductCardActions";
+import { Product } from "@/constants/productsDataV2";
+import { MovingBorderBadge } from "../shared/MovingBorderBadge";
 
 export default function ProductCard({
   product,
@@ -14,11 +15,17 @@ export default function ProductCard({
   product: Product;
   index: number;
 }) {
+  console.log(product);
   return (
     <Link
       href={`/collections/${product.slug}?color=${product.variants[0].color}&size=${product.variants[0].sizes[0]}`}
       className="group relative block"
     >
+      {product.onSale && (
+        <div className="absolute top-1 left-1 z-10">
+          <MovingBorderBadge duration={2000} className="text-xs p-1" text={`${product.discountPercentage}%` || ""} />
+        </div>
+      )}
       <div className="bg-white rounded-md overflow-hidden shadow-sm hover:shadow-md transition-shadow">
         {/* Image Container */}
         <div className="aspect-square bg-gray-100 relative overflow-hidden">
@@ -42,7 +49,20 @@ export default function ProductCard({
             <div className="hidden sm:block">
               <LogoFactory small brand={product.brand} />
             </div>
-            <p className="font-medium">${product.price}.00</p>
+            <div className="flex items-baseline sm:text-lg space-x-2">
+              {product.onSale ? (
+                <>
+                  <span className="text-gray-400 text-xs line-through">
+                    ${product.price.toFixed(0)}.00
+                  </span>
+                  <span className=" font-semibold text-primary-accent">
+                    ${product.salePrice!.toFixed(0)}.00
+                  </span>
+                </>
+              ) : (
+                <span className=" font-medium">${product.price.toFixed(0)}.00</span>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -63,7 +83,8 @@ export default function ProductCard({
       <ProductCardActions
         productId={product.id}
         name={product.name}
-        price={product.price}
+        price={product.salePrice || product.price}
+        
         image={product.variants[0].images[0]}
         color={product.variants[0].color}
         size={product.variants[0].sizes[0]}

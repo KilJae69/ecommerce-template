@@ -15,6 +15,7 @@ type AddToCartButtonProps = {
   productId: string;
   name: string;
   price: number;
+  
   image: string;
   color: string;
   size: string;
@@ -27,6 +28,7 @@ export default function AddToCartButton({
   productId,
   name,
   price,
+  
   image,
   color,
   size,
@@ -46,6 +48,7 @@ export default function AddToCartButton({
         id,
         name,
         price,
+       
         quantity: 1,
         image,
         color,

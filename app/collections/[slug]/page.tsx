@@ -2,7 +2,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
-import { dummyProducts } from "@/constants/productsData";
+
 import { Container } from "@/components/shared/Container";
 import { VariantSelector } from "@/components/products-page/VariantSelector";
 
@@ -13,6 +13,7 @@ import Ratings from "@/components/products-page/Ratings";
 import ProductInfoTabs from "@/components/products-page/ProductInfoTabs";
 import GlareCTA from "@/components/shared/GlareCTA";
 import AddToCartButton from "@/components/shared/AddToCartButton";
+import { dummyProducts } from "@/constants/productsDataV2";
 
 type PageProps = {
   // note: both params and searchParams are now Promises
@@ -68,10 +69,19 @@ export default async function ProductPage(props: PageProps) {
               </div>
             </div>
 
-            <div>
-              <span className="text-4xl text-gradient font-semibold">
-                ${product.price}.00
-              </span>
+            <div className="flex items-baseline sm:text-lg space-x-2">
+              {product.onSale ? (
+                <>
+                  <span className="text-gray-400 line-through">
+                    ${product.price.toFixed(0)}.00
+                  </span>
+                  <span className="text-4xl text-gradient font-semibold">
+                    ${product.salePrice!.toFixed(0)}.00
+                  </span>
+                </>
+              ) : (
+                <span className="text-4xl text-gradient font-semibold">${product.price.toFixed(0)}.00</span>
+              )}
             </div>
 
             <VariantSelector slug={slug} variants={product.variants} />
@@ -81,7 +91,7 @@ export default async function ProductPage(props: PageProps) {
           
                 productId={product.id}
                 name={product.name}
-                price={product.price}
+                price={product.salePrice || product.price}
                 image={colorVariant.images[0]}
                 color={colorVariant.color}
                 size={selectedSize}
