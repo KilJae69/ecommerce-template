@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import  { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { domAnimation, LazyMotion } from "motion/react";
-import InnerLayout from "@/components/InnerLayout";
 
 import { UnifiedStoreProvider } from "@/providers/unified-store-provider";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const poppins = Poppins({
   subsets: ["latin"], // Choose language subsets as needed
@@ -31,8 +32,10 @@ export default async function RootLayout({
       >
         <LazyMotion features={domAnimation}>
           <UnifiedStoreProvider>
-            
-              <InnerLayout>{children}</InnerLayout>
+            <Header />
+            <main className="w-full flex-1 ">{children}</main>
+            <Footer />
+            <div id="modal-root"></div>
             <Toaster />
           </UnifiedStoreProvider>
         </LazyMotion>
