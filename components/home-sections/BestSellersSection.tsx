@@ -2,7 +2,7 @@
 
 import { Container } from "../shared/Container";
 import { MovingBorderBadge } from "../shared/MovingBorderBadge";
-import BestSellersSwiper from "./BestSellersSwiper";
+// import BestSellersSwiper from "./BestSellersSwiper";
 
 export default function BestSellersSection() {
   return (
@@ -16,7 +16,7 @@ export default function BestSellersSection() {
           </p>
         </div>
       </Container>
-      <BestSellersSwiper />
+      {/* <BestSellersSwiper /> */}
     </section>
   );
 }
