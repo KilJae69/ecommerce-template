@@ -2,7 +2,7 @@
 
 import BestSellersSection from "@/components/home-sections/BestSellersSection";
 import CategoriesSection from "@/components/home-sections/CategoriesSection";
-import FeaturedBrandsSection from "@/components/home-sections/FeaturedBrandsSection";
+// import FeaturedBrandsSection from "@/components/home-sections/FeaturedBrandsSection";
 import HeroSlider from "@/components/home-sections/HeroSlider";
 import MarqueeSection from "@/components/home-sections/MarqueeSection";
 
@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSlider />
-      <FeaturedBrandsSection />
+      {/* <FeaturedBrandsSection /> */}
       <MarqueeSection/>
       <CategoriesSection/>
       <BestSellersSection/>
