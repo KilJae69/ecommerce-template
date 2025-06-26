@@ -36,7 +36,7 @@ export default function GlobalSearch() {
         value={value}
         name="query"
         autoComplete="off"
-        placeholder="Nike Air Jordan"
+        placeholder="Air Zoom Pegasus"
         type="text"
         className="w-full relative text-md sm:text-base  border-none bg-transparent text-black h-full rounded-full focus:outline-none focus:ring-0 pl-4 sm:pl-10 pr-20"
         onChange={(e) => setValue(e.target.value)}

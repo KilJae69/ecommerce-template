@@ -3,6 +3,8 @@
 
 @theme {
   --color-primary-accent: #d4af37;
+   --color-primary-accent-dark:   #b08c2e;  /* ~15% darker */
+  --color-primary-accent-light:  #f3e7b1;  /* ~40% lighter */
   --color-primary: #1e293b;
   --color-primary-light: #475569;
   --color-primary-lighter: #94a3b8;
@@ -75,6 +77,15 @@ body.modal-open {
 .text-gradient {
   @apply bg-gradient-to-tr from-primary via-primary-light to-primary-lighter bg-clip-text text-transparent;
 }
+.text-gradient-accent {
+  @apply 
+    bg-gradient-to-tr 
+    from-[var(--color-primary-accent-dark)] 
+    via-[var(--color-primary-accent)] 
+    to-[var(--color-primary-accent-light)] 
+    bg-clip-text 
+    text-transparent;
+}
 
 /* Swiper Styles */
 
@@ -126,5 +137,27 @@ body.modal-open {
   }
   .animate-content-blur {
     animation: content-blur 0.5s var(--tw-transition-timing-function) both;
+  }
+}
+
+@theme inline {
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+ 
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
   }
 }

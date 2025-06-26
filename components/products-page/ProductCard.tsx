@@ -23,10 +23,25 @@ export default function ProductCard({
     >
       {product.onSale && (
         <div className="absolute top-1 left-1 z-10">
-          <MovingBorderBadge duration={2000} className="text-xs p-1" text={`${product.discountPercentage}%` || ""} />
+          <MovingBorderBadge
+            duration={2000}
+            className="text-xs p-1"
+            text={`${product.discountPercentage}%` || ""}
+          />
         </div>
       )}
-      <div className="bg-white rounded-md overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+      {product.isPopular && (
+        <div className="absolute flex items-center top-1 left-1/2 -translate-x-1/2 z-10">
+          <Image
+            src="/gifs/fire-hot.gif"
+            alt="fire gif"
+            width={40}
+            height={40}
+          />
+          <span className="text-rose-600 font-bold">HOT</span>
+        </div>
+      )}
+      <div className="bg-white relative rounded-md overflow-hidden shadow-sm hover:shadow-md transition-shadow">
         {/* Image Container */}
         <div className="aspect-square bg-gray-100 relative overflow-hidden">
           <Image
@@ -60,7 +75,9 @@ export default function ProductCard({
                   </span>
                 </>
               ) : (
-                <span className=" font-medium">${product.price.toFixed(0)}.00</span>
+                <span className=" font-medium">
+                  ${product.price.toFixed(0)}.00
+                </span>
               )}
             </div>
           </div>
@@ -84,7 +101,6 @@ export default function ProductCard({
         productId={product.id}
         name={product.name}
         price={product.salePrice || product.price}
-        
         image={product.variants[0].images[0]}
         color={product.variants[0].color}
         size={product.variants[0].sizes[0]}

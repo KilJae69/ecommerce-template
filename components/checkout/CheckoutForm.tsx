@@ -10,6 +10,10 @@ import Image from "next/image";
 import { CardNumberInput } from "./CardNumberInput";
 import { ExpiryInput } from "./ExpiryInput";
 
+import { FaUser,  FaCreditCard } from "react-icons/fa";
+import { ReactNode } from "react";
+import { FaTruckFast } from "react-icons/fa6";
+
 export default function CheckoutForm() {
   const {
     register,
@@ -20,8 +24,8 @@ export default function CheckoutForm() {
   return (
    
       <form className="rounded-md space-y-6">
-        <Section title="Personal Information">
-          <div className="grid md:grid-cols-2 mb-2 gap-2">
+        <Section icon={<FaUser/>} title="Personal Information">
+          <div className="grid lg:grid-cols-2 mb-2 gap-2">
             <LabelInput
               id="firstName"
               label="First Name *"
@@ -45,7 +49,7 @@ export default function CheckoutForm() {
               />
             </LabelInput>
           </div>
-          <div className="grid md:grid-cols-2 mb-2 gap-2">
+          <div className="grid lg:grid-cols-2 mb-2 gap-2">
             <LabelInput
               id="email"
               label="Email *"
@@ -73,8 +77,8 @@ export default function CheckoutForm() {
           </div>
         </Section>
 
-        <Section title="Shipping Address">
-          <div className="grid md:grid-cols-2 mb-2 gap-2">
+        <Section icon={<FaTruckFast />} title="Shipping Address">
+          <div className="grid lg:grid-cols-2 mb-2 gap-2">
             <LabelInput
               id="address"
               label="Address *"
@@ -94,7 +98,7 @@ export default function CheckoutForm() {
               />
             </LabelInput>
           </div>
-          <div className="grid md:grid-cols-3 mb-2 gap-2">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 mb-2 gap-2">
             <LabelInput id="city" label="City *" error={errors.city?.message}>
               <Input
                 className="bg-gray-100"
@@ -138,7 +142,7 @@ export default function CheckoutForm() {
           </LabelInput>
         </Section>
 
-        <Section title="Billing Details">
+        <Section icon={<FaCreditCard/>} title="Billing Details">
           <Label className="font-semibold uppercase text-sm text-muted-foreground mb-4 flex items-center gap-4">
             Credit / Debit Card{" "}
             <span className="flex gap-2">
@@ -171,7 +175,7 @@ export default function CheckoutForm() {
                 placeholder="Clark Kent"
               />
             </LabelInput>
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid lg:grid-cols-2 gap-4">
               <LabelInput id="expiry" label="Expiration date (MM/YY) *">
                 <ExpiryInput name="expiry" />
               </LabelInput>
@@ -200,13 +204,16 @@ export default function CheckoutForm() {
 function Section({
   title,
   children,
+  icon
 }: {
   title: string;
+  icon?: ReactNode;
   children: React.ReactNode;
 }) {
   return (
     <div className="space-y-6 shadow-md p-3 md:p-6 rounded-md">
-      <h2 className="text-xl pb-3 text-primary-accent font-semibold tracking-wider border-b">
+      <h2 className="text-xl pb-3 flex items-center gap-2 text-primary font-semibold tracking-wider border-b">
+        {icon && <span className="text-primary-accent text-3xl">{icon}</span>}
         {title}
       </h2>
       {children}
