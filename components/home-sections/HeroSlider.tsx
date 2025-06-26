@@ -90,7 +90,7 @@ export default function HeroSlider() {
                   transition={{ duration: 0.6 }}
                   className="absolute z-30 -right-10 -top-10 aspect-square w-[50%]"
                 >
-                  <Image src="/icons/quality.png" alt="quality badge" fill />
+                  <Image priority src="/icons/quality.png" alt="quality badge" fill />
                 </m.div>
                 </AnimatePresence>
                 <AnimatePresence mode="wait">
