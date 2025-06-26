@@ -3,14 +3,13 @@
 
 import React from "react";
 import { useLazySwiper } from "@/lib/hooks/useLazySwiper";
-import { dummyProducts } from "@/constants/productsDataV2";
+import {  Product } from "@/constants/productsDataV2";
 import ProductCard from "../products-page/ProductCard";
 
 
-// only show the first 8 popular products
-const popularProducts = dummyProducts.filter(p => p.isPopular).slice(0, 8);
 
-export default function BestSellersSwiper() {
+
+export default function ProductsSwiper({products}:{products:Product[]}) {
   const {
     ref,
     SwiperComponent,
@@ -41,7 +40,7 @@ export default function BestSellersSwiper() {
           modules={modules}
           className="w-full h-auto py-8"
         >
-          {popularProducts.map((product, idx) => (
+          {products.map((product, idx) => (
             <SwiperSlideComponent
               key={product.id}
               className="p-1 mb-7 cursor-grab"

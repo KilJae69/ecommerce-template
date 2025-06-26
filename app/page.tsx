@@ -5,6 +5,8 @@
  import FeaturedBrandsSection from "@/components/home-sections/FeaturedBrandsSection";
  import HeroSlider from "@/components/home-sections/HeroSlider";
  import MarqueeSection from "@/components/home-sections/MarqueeSection";
+import SaleDividerSection from "@/components/home-sections/SaleDividerSection";
+import SaleProductsSection from "@/components/home-sections/SaleProductsSection";
 
  import GlareCTA from "@/components/shared/GlareCTA";
 
@@ -17,6 +19,8 @@ export default function HomePage() {
       <MarqueeSection/> 
       <CategoriesSection/> 
        <BestSellersSection/> 
+       <SaleDividerSection/>
+       <SaleProductsSection/>
          <GlareCTA /> 
      
     </>

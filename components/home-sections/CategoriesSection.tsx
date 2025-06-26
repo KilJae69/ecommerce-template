@@ -5,6 +5,7 @@ import { Container } from "../shared/Container";
 import { MovingBorderBadge } from "../shared/MovingBorderBadge";
 import BoldCopy from "../ui/bold-copy";
 
+
 const categories = [
   {
     key: "lifestyle",
@@ -40,11 +41,12 @@ export default function CategoriesSection() {
           <MovingBorderBadge text="Find Your Perfect Fit" />
 
           <h2 className="text-h2 text-gradient">Categories</h2>
-          <p className="text-paragraph-light max-w-xl">
+          <p className="text-paragraph max-w-xl">
             Whether you’re pounding the pavement, hitting the court, or just
             kicking back, we’ve got a curated selection for every style and
             sport. Click a category to explore our top picks.
           </p>
+         
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2  gap-6">
           {categories.map((cat) => (

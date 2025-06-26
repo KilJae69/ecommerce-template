@@ -3,8 +3,8 @@
 
 @theme {
   --color-primary-accent: #d4af37;
-   --color-primary-accent-dark:   #b08c2e;  /* ~15% darker */
-  --color-primary-accent-light:  #f3e7b1;  /* ~40% lighter */
+  --color-primary-accent-dark: #b08c2e; /* ~15% darker */
+  --color-primary-accent-light: #f3e7b1; /* ~40% lighter */
   --color-primary: #1e293b;
   --color-primary-light: #475569;
   --color-primary-lighter: #94a3b8;
@@ -17,8 +17,6 @@
 
   --animate-marquee: marquee 20s infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
-
-  
 }
 body.modal-open {
   overflow: hidden;
@@ -78,8 +76,7 @@ body.modal-open {
   @apply bg-gradient-to-tr from-primary via-primary-light to-primary-lighter bg-clip-text text-transparent;
 }
 .text-gradient-accent {
-  @apply 
-    bg-gradient-to-tr 
+  @apply bg-gradient-to-tr 
     from-[var(--color-primary-accent-dark)] 
     via-[var(--color-primary-accent)] 
     to-[var(--color-primary-accent-light)] 
@@ -116,16 +113,32 @@ body.modal-open {
 
   /* keyframes */
   @keyframes reveal-up {
-    0%   { opacity: 0; transform: translateY(80%); }
-    100% { opacity: 1; transform: translateY(0);    }
+    0% {
+      opacity: 0;
+      transform: translateY(80%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   @keyframes reveal-down {
-    0%   { opacity: 0; transform: translateY(-80%); }
-    100% { opacity: 1; transform: translateY(0);     }
+    0% {
+      opacity: 0;
+      transform: translateY(-80%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   @keyframes content-blur {
-    0%   { filter: blur(0.3rem); }
-    100% { filter: blur(0);     }
+    0% {
+      filter: blur(0.3rem);
+    }
+    100% {
+      filter: blur(0);
+    }
   }
 
   /* animation utilities */
@@ -143,7 +156,8 @@ body.modal-open {
 @theme inline {
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
- 
+  --animate-rippling: rippling var(--duration) ease-out;
+
   @keyframes marquee {
     from {
       transform: translateX(0);
@@ -158,6 +172,15 @@ body.modal-open {
     }
     to {
       transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes rippling {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
     }
   }
 }
