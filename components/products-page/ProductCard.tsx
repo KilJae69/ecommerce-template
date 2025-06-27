@@ -4,15 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import LogoFactory from "./LogoFactory";
 
-
+import ProductCardActions from "./ProductCardActions";
 import { Product } from "@/constants/productsDataV2";
 import { MovingBorderBadge } from "../shared/MovingBorderBadge";
-import dynamic from "next/dynamic";
 
-const ProductCardActions = dynamic(() => import("./ProductCardActions"), {
-  ssr: false, // never render on the server
-  loading: () => <div className="bg-gray-200 rounded-full size-6 animate-pulse"></div>,
-});
 
 export default function ProductCard({
   product,

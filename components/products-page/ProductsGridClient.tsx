@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import ProductCard from "./ProductCard";
+// import ProductCard from "./ProductCard";
 // import dynamic from "next/dynamic";
 // import { ProductCardSkeleton } from "../shared/Skeletons";
 
@@ -78,7 +78,7 @@ export default function ProductsGridClient() {
     <>
       <div className="grid gap-4 relative mt-8 px-2 grid-cols-2 lg:grid-cols-3">
         <AnimatePresence>
-          {visibleProducts.map((product, index) => (
+          {visibleProducts.map((product, ) => (
             <motion.div
               key={product.id}
               layout
@@ -87,7 +87,7 @@ export default function ProductsGridClient() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <ProductCard index={index} product={product} />
+             <div className="aspect-sqaure bg-rose-200"></div>
               
             </motion.div>
           ))}
