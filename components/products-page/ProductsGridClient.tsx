@@ -87,7 +87,7 @@ export default function ProductsGridClient() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
             >
-             <div className="aspect-sqaure bg-rose-200"></div>
+             <div className="aspect-square bg-rose-200"></div>
               
             </motion.div>
           ))}
