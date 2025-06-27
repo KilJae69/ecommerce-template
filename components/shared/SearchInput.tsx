@@ -22,6 +22,8 @@ export default function SearchInput() {
     <div className="">
       
       <PlaceholdersAndVanishInput
+       inputAria = "Email address"
+      buttonAria = "Subscribe to newsletter"
         placeholders={placeholders}
         onChange={handleChange}
         onSubmit={onSubmit}
