@@ -1,7 +1,7 @@
 "use client";
 
 import { useProductFilter } from "@/lib/hooks/useProductFilter";
-import { AnimatePresence, motion } from "motion/react";
+// import { AnimatePresence, motion } from "motion/react";
 import ProductCard from "./ProductCard";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -69,20 +69,20 @@ export default function ProductsGridClient() {
   return (
     <>
       <div className="grid gap-4 relative mt-8 px-2 grid-cols-2 lg:grid-cols-3">
-        <AnimatePresence>
+        {/* <AnimatePresence> */}
           {visibleProducts.map((product, index) => (
-            <motion.div
+            <div
               key={product.id}
-              layout
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
+              // layout
+              // initial={{ opacity: 0 }}
+              // animate={{ opacity: 1 }}
+              // exit={{ opacity: 0 }}
+              // transition={{ duration: 0.4 }}
             >
               <ProductCard index={index} product={product} />
-            </motion.div>
+            </div>
           ))}
-        </AnimatePresence>
+        {/* </AnimatePresence> */}
 
         {/* Sentinel for lazy loading */}
         <div ref={sentinelRef} className="h-10 col-span-full" />
@@ -102,21 +102,21 @@ export default function ProductsGridClient() {
       </div>
 
       {/* Scroll to top FAB */}
-      <AnimatePresence>
+      {/* <AnimatePresence> */}
         {showScrollTop && (
-          <motion.button
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 30 }}
-            transition={{ duration: 0.3 }}
+          <button
+            // initial={{ opacity: 0, y: 30 }}
+            // animate={{ opacity: 1, y: 0 }}
+            // exit={{ opacity: 0, y: 30 }}
+            // transition={{ duration: 0.3 }}
             onClick={scrollToTop}
             aria-label="Scroll to top"
             className="bg-primary cursor-pointer text-white text-sm px-4 py-2 rounded-full shadow-md fixed bottom-30 md:bottom-5 right-6 z-[3000] focus:outline-none focus:ring-2 focus:ring-primary-accent"
           >
             ↑ Top
-          </motion.button>
+          </button>
         )}
-      </AnimatePresence>
+      {/* </AnimatePresence> */}
 
       {/* Empty state */}
       {products.length === 0 && (
