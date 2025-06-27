@@ -11,7 +11,7 @@ export default function TestimonialSection() {
         <div className="mx-auto mb-24 grid md:grid-cols-2 md:gap-8 items-center">
           {/* Left Column: Heading + Blurb */}
           <div className="relative z-10 space-y-4">
-              <MovingBorderBadge text="Our Top Picks" />
+              <MovingBorderBadge text="What They're Saying" />
             <h2 className="text-h2 text-gradient-accent">
               Hear From Our Customers
             </h2>

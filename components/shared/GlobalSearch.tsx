@@ -33,6 +33,7 @@ export default function GlobalSearch() {
       className="w-full relative max-w-xl mx-auto bg-white h-12 rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200"
     >
       <input
+        aria-label="Search products"
         value={value}
         name="query"
         autoComplete="off"
@@ -43,6 +44,7 @@ export default function GlobalSearch() {
       />
 
       <button
+      aria-label="Submit search"
         disabled={!value.trim()}
         type="submit"
         className="absolute right-2 top-1/2 z-50 cursor-pointer -translate-y-1/2 h-8 w-8 rounded-full disabled:bg-primary-accent/50 bg-primary-accent transition duration-200 flex items-center justify-center disabled:cursor-not-allowed"
@@ -73,4 +75,3 @@ export default function GlobalSearch() {
     </form>
   );
 }
-

@@ -25,7 +25,7 @@ const ReviewCard = ({
       className={cn(
         "relative h-full w-64 lg:w-94 cursor-pointer overflow-hidden rounded-xl border px-4 py-4 md:py-6 bg-gray-900",
         // light styles
-        "border-primary-light  hover:bg-gray-900/[.5]"
+        "border-primary-light  hover:bg-gray-800"
       )}
     >
       <div className="flex flex-row items-center gap-2">

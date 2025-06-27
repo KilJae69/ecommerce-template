@@ -11,7 +11,6 @@ import HeroButton from "./HeroButton";
 import Image from "next/image";
 import { heroFeaturesData } from "@/constants/heroFeaturesData";
 
-
 export default function HeroSlider() {
   const [idx, setIdx] = useState(0);
   const slide = heroSlides[idx];
@@ -51,28 +50,21 @@ export default function HeroSlider() {
                 className="flex flex-col min-h-[420px] md:min-h-[452px] lg:min-h-[420px] items-center lg:items-start justify-center"
               >
                 {/* fixed-size logo box */}
-               
-                  <div className=" mb-2 size-18">
-                    <slide.Logo className="h-full w-full object-contain" />
-                  </div>
-           
+
+                <div className=" mb-2 size-18">
+                  <slide.Logo className="h-full w-full object-contain" />
+                </div>
+
                 <h1 className="text-4xl md:text-6xl lg:text-5xl max-w-lg font-bold mb-4">
-                 
-                    <span className="text-primary-accent">{slide.brand}</span>
-                 {" "}
-                    <span className="text-gradient">{slide.title}</span>
-                 
+                  <span className="text-primary-accent">{slide.brand}</span>{" "}
+                  <span className="text-gradient">{slide.title}</span>
                 </h1>
-              
-                  <p className="max-w-md mx-auto text-paragraph lg:mx-0 mb-6">
-                    {slide.description}
-                  </p>
-                
-              
-                
-                    <HeroButton />
-                
-               
+
+                <p className="max-w-md mx-auto text-paragraph lg:mx-0 mb-6">
+                  {slide.description}
+                </p>
+
+                <HeroButton />
               </m.div>
             </AnimatePresence>
           </div>
@@ -90,32 +82,44 @@ export default function HeroSlider() {
                   transition={{ duration: 0.6 }}
                   className="absolute z-30 -right-10 -top-10 aspect-square w-[50%]"
                 >
-                  <Image priority src="/icons/quality.png" alt="quality badge" fill />
+                  <Image
+                    priority
+                    src="/icons/quality.png"
+                    alt="quality badge"
+                    fill
+                  />
                 </m.div>
-                </AnimatePresence>
-                <AnimatePresence mode="wait">
+              </AnimatePresence>
+              <AnimatePresence mode="wait">
                 <m.div
-                key={slide.img}
-                initial={{ opacity: 0, scale: 0.8 }}
+                  key={slide.img}
+                  initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.6 }}
                   className="relative size-full aspect-square"
                 >
-                  <Image fill priority className="h-full z-10 relative w-full object-contain" src={slide.img} alt={slide.title}/>
+                  <Image
+                    fill
+                    priority
+                    className="h-full z-10 relative w-full object-contain"
+                    src={slide.img}
+                    alt={slide.title}
+                  />
                 </m.div>
-                
               </AnimatePresence>
             </div>
 
             {/* Prev/Next Arrows */}
             <button
+              aria-label="Previous slide"
               onClick={prev}
               className="absolute left-0 z-50 top-2/3 flex items-center text-primary justify-center size-18 cursor-pointer -translate-y-1/2 p-2   rounded-full border transition hover:text-primary-accent"
             >
               <FaArrowLeft />
             </button>
             <button
+              aria-label="Next slide"
               onClick={next}
               className="absolute right-0 z-50 top-2/3 flex items-center text-primary justify-center size-18 cursor-pointer -translate-y-1/2 p-2  border rounded-full transition hover:text-primary-accent"
             >
@@ -123,9 +127,10 @@ export default function HeroSlider() {
             </button>
 
             {/* Dots */}
-            <div className="absolute z-40 bottom-0 left-1/2 -translate-x-1/2 flex space-x-4">
+            <div role="group" aria-label="Slide navigation" className="absolute z-40 bottom-0 left-1/2 -translate-x-1/2 flex space-x-4">
               {heroSlides.map((_, i) => (
                 <button
+                  aria-label={`Go to slide ${i + 1}`}
                   key={i}
                   onClick={() => setIdx(i)}
                   className={`w-4 h-4 rounded-full cursor-pointer ${
