@@ -8,10 +8,14 @@ export function PlaceholdersAndVanishInput({
   placeholders,
   onChange,
   onSubmit,
+  inputAria,
+  buttonAria,
 }: {
   placeholders: string[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  inputAria: string;
+  buttonAria: string;
 }) {
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
 
@@ -40,7 +44,7 @@ export function PlaceholdersAndVanishInput({
       }
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [placeholders]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -187,7 +191,6 @@ export function PlaceholdersAndVanishInput({
       onSubmit={handleSubmit}
     >
       <canvas
-      
         className={cn(
           "absolute pointer-events-none  text-base transform scale-50 top-[20%] left-2 sm:left-8 origin-top-left filter invert  pr-20",
           !animating ? "opacity-0" : "opacity-100"
@@ -195,8 +198,9 @@ export function PlaceholdersAndVanishInput({
         ref={canvasRef}
       />
       <input
-      suppressHydrationWarning
-      autoComplete="off"
+        aria-label={inputAria}
+        suppressHydrationWarning
+        autoComplete="off"
         onChange={(e) => {
           if (!animating) {
             setValue(e.target.value);
@@ -215,6 +219,7 @@ export function PlaceholdersAndVanishInput({
       />
 
       <button
+        aria-label={buttonAria}
         disabled={!value}
         type="submit"
         className="absolute cursor-pointer right-2 top-1/2 z-50 -translate-y-1/2 h-8 w-8 rounded-full disabled:bg-primary-accent/50 bg-primary-accent transition duration-200 flex items-center justify-center"

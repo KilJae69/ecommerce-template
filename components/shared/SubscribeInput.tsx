@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import { PlaceholdersAndVanishInput } from "../ui/placeholders-and-vanish-input";
 
 export default function SubscribeInput() {
@@ -19,12 +20,15 @@ export default function SubscribeInput() {
   };
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    toast.success("🎉 You’re on the list." )
     console.log("submitted");
   };
   return (
     <div className="">
       
       <PlaceholdersAndVanishInput
+      inputAria = "Email address"
+      buttonAria = "Subscribe to newsletter"
         placeholders={placeholders}
         onChange={handleChange}
         onSubmit={onSubmit}

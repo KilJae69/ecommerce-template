@@ -86,6 +86,7 @@ export default function VanishingContactForm({
                   <Label htmlFor="firstName">First Name *</Label>
                   <VanishingInput
                     {...register("firstName")}
+                    id="firstName"
                     value={firstName}
                     onChange={(e) => setValue("firstName", e.target.value)}
                     triggerVanish={vanish}
@@ -97,6 +98,7 @@ export default function VanishingContactForm({
                   <Label htmlFor="lastName">Last Name *</Label>
                   <VanishingInput
                     {...register("lastName")}
+                    id="lastName"
                     value={lastName}
                     onChange={(e) => setValue("lastName", e.target.value)}
                     triggerVanish={vanish}
@@ -111,6 +113,7 @@ export default function VanishingContactForm({
                   <Label htmlFor="phone">Phone (optional)</Label>
                   <VanishingInput
                     {...register("phone")}
+                    id="phone"
                     value={phone || ""}
                     onChange={(e) => setValue("phone", e.target.value)}
                     triggerVanish={vanish}
@@ -127,6 +130,7 @@ export default function VanishingContactForm({
                   <Label htmlFor="email">Email *</Label>
                   <VanishingInput
                     {...register("email")}
+                    id="email"
                     value={email}
                     onChange={(e) => setValue("email", e.target.value)}
                     triggerVanish={vanish}
@@ -144,6 +148,7 @@ export default function VanishingContactForm({
                 <Label htmlFor="message">Message *</Label>
                 <VanishingTextarea
                   {...register("message")}
+                  id="message"
                   value={message}
                   onChange={(e) => setValue("message", e.target.value)}
                   triggerVanish={vanish}
@@ -157,6 +162,7 @@ export default function VanishingContactForm({
               </LabelInputContainer>
 
               <button
+              
                 className="group/btn cursor-pointer relative block h-10 w-full rounded-md bg-gradient-to-br from-primary-accent to-primary-accent/80 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset]  disabled:opacity-70"
                 type="submit"
                 disabled={isSubmitting}
