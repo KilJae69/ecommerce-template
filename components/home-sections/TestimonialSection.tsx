@@ -8,7 +8,7 @@ export default function TestimonialSection() {
   return (
     <section className="my-12 lg:my-24 py-12 lg:py-24 overflow-hidden bg-primary relative">
       <Container>
-        <div className="mx-auto mb-24 grid md:grid-cols-2 md:gap-8 items-center">
+        <div className="mx-auto mb-12 grid md:grid-cols-2 md:gap-8 items-center">
           {/* Left Column: Heading + Blurb */}
           <div className="relative z-10 space-y-4">
               <MovingBorderBadge text="What They're Saying" />
@@ -43,7 +43,7 @@ export default function TestimonialSection() {
       </div> */}
         </div>
       </Container>
-      <div className="lg:mt-12 relative z-10">
+      <div className="lg:mt-6 relative z-10">
         <MarqueeTestimonials />
       </div>
       
