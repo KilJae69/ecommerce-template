@@ -5,7 +5,7 @@ import "./globals.css";
 import { domAnimation, LazyMotion } from "motion/react";
 
 import { UnifiedStoreProvider } from "@/providers/unified-store-provider";
-// import Header from "@/components/Header";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const poppins = Poppins({
@@ -32,7 +32,7 @@ export default async function RootLayout({
       >
         <LazyMotion features={domAnimation}>
           <UnifiedStoreProvider>
-            {/* <Header /> */}
+            <Header />
             <main className="w-full flex-1 ">{children}</main>
             <Footer />
             <div id="modal-root"></div>
