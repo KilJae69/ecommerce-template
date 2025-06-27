@@ -5,15 +5,16 @@ import { AnimatePresence, motion } from "motion/react";
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
-import { ProductCardSkeleton } from "../shared/Skeletons";
+import ProductCard from "./ProductCard";
+// import dynamic from "next/dynamic";
+// import { ProductCardSkeleton } from "../shared/Skeletons";
 
 const ITEMS_PER_LOAD = 12;
 
-const ProductCard = dynamic(() => import("./ProductCard"), {
-  ssr: false, // never render on the server
-  loading: () => <ProductCardSkeleton />,
-});
+// const ProductCard = dynamic(() => import("./ProductCard"), {
+//   ssr: false, // never render on the server
+//   loading: () => <ProductCardSkeleton />,
+// });
 
 export default function ProductsGridClient() {
   const { products } = useProductFilter();
@@ -87,7 +88,7 @@ export default function ProductsGridClient() {
               transition={{ duration: 0.4 }}
             >
               <ProductCard index={index} product={product} />
-              <div className="aspect-square bg-rose-400"></div>
+              
             </motion.div>
           ))}
         </AnimatePresence>

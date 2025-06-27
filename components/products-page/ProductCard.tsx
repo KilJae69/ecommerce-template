@@ -4,9 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import LogoFactory from "./LogoFactory";
 
-import ProductCardActions from "./ProductCardActions";
+
 import { Product } from "@/constants/productsDataV2";
 import { MovingBorderBadge } from "../shared/MovingBorderBadge";
+import dynamic from "next/dynamic";
+
+const ProductCardActions = dynamic(() => import("./ProductCardActions"), {
+  ssr: false, // never render on the server
+  loading: () => <div className="bg-gray-200 rounded-full size-6 animate-pulse"></div>,
+});
 
 export default function ProductCard({
   product,
@@ -85,17 +91,7 @@ export default function ProductCard({
         </div>
       </div>
 
-      {/* Mobile Action Buttons (always visible below image) */}
-      {/* <div className="sm:hidden absolute top-2 flex-col right-2 flex justify-center gap-4">
-        {[Eye, ShoppingCart, Heart].map((Icon, i) => (
-          <button
-            key={i}
-            className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
-          >
-            <Icon className="w-4 h-4 text-gray-700" />
-          </button>
-        ))}
-      </div> */}
+  
 
       {/* Action Buttons */}
       <ProductCardActions
