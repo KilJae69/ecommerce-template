@@ -2,7 +2,7 @@
 
 import { useProductFilter } from "@/lib/hooks/useProductFilter";
 import { AnimatePresence, motion } from "motion/react";
-import ProductCard from "./ProductCard";
+// import ProductCard from "./ProductCard";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -70,7 +70,7 @@ export default function ProductsGridClient() {
     <>
       <div className="grid gap-4 relative mt-8 px-2 grid-cols-2 lg:grid-cols-3">
         <AnimatePresence>
-          {visibleProducts.map((product, index) => (
+          {visibleProducts.map((product, ) => (
             <motion.div
               key={product.id}
               layout
@@ -79,7 +79,8 @@ export default function ProductsGridClient() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <ProductCard index={index} product={product} />
+              {/* <ProductCard index={index} product={product} /> */}
+              <div className="aspect-square bg-rose-400"></div>
             </motion.div>
           ))}
         </AnimatePresence>
