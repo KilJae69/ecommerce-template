@@ -33,6 +33,7 @@ export default function ProductCard({
       {product.isPopular && (
         <div className="absolute flex items-center top-1 left-1/2 -translate-x-1/2 z-10">
           <Image
+          unoptimized
             src="/gifs/fire-hot.gif"
             alt="fire gif"
             width={40}
