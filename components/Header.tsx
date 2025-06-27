@@ -20,13 +20,11 @@ import { useHeaderScroll } from "@/lib/hooks/useHeaderScroll";
 import { GlobalSearchSkeleton } from "./shared/Skeletons";
 import WishlistModal from "./WishlistModal";
 
-
 // 1) hook to detect a CSS media-query
 function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(false);
 
   useEffect(() => {
-    
     const mql = window.matchMedia(query);
     const onChange = (e: MediaQueryListEvent) => setMatches(e.matches);
     mql.addEventListener("change", onChange);
@@ -107,6 +105,7 @@ export default function Header() {
                     className="object-contain"
                     priority
                     fill
+                    sizes="(min-width: 780px) 186px, 140px"
                     alt="logo"
                   />
                 </div>
@@ -118,7 +117,7 @@ export default function Header() {
 
               <div className="flex items-center gap-4">
                 {/* <FaRegUser className="size-6 md:size-8" /> */}
-                <WishlistModal/>
+                <WishlistModal />
                 <CartModal />
               </div>
             </div>
@@ -147,6 +146,7 @@ export default function Header() {
             </div>
             <div className="relative w-[140px] h-[80px]">
               <Image
+                sizes="(min-width: 380px) 140px, calc(86.67vw - 172px)"
                 src="/logo.png"
                 className="object-contain"
                 fill
@@ -163,7 +163,7 @@ export default function Header() {
 
             <div className="flex items-center gap-4">
               {/* <FaRegUser className="size-6 md:size-8" /> */}
-              <WishlistModal/>
+              <WishlistModal />
               <CartModal />
             </div>
           </div>
@@ -182,8 +182,8 @@ export default function Header() {
         <Container>
           {/* <SearchInput /> */}
           <Suspense fallback={<GlobalSearchSkeleton />}>
-                <GlobalSearch />
-              </Suspense>
+            <GlobalSearch />
+          </Suspense>
         </Container>
       </m.div>
     </header>
