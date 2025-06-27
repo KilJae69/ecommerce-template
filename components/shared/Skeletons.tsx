@@ -59,6 +59,15 @@ export  function FiltersPanelSkeleton() {
             ))}
           </div>
         </div>
+        {/* Category Filter Skeleton */}
+        <div className="space-y-2">
+          <div className="h-5 w-20 rounded bg-gray-200" />
+          <div className="grid grid-cols-4 md:grid-cols-2 w-full gap-2">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="h-12 rounded bg-gray-200" />
+            ))}
+          </div>
+        </div>
 
         {/* Gender Filter Skeleton */}
         <div className="space-y-2">
@@ -83,9 +92,9 @@ export  function FiltersPanelSkeleton() {
         {/* Color Filter Skeleton */}
         <div className="space-y-2">
           <div className="h-5 w-16 rounded bg-gray-200" />
-          <div className="flex flex-wrap gap-2">
+          <div className="grid grid-cols-5">
             {[...Array(8)].map((_, i) => (
-              <div key={i} className="h-8 w-16 rounded bg-gray-200" />
+              <div key={i} className="size-8 rounded-full bg-gray-200" />
             ))}
           </div>
         </div>
