@@ -1,7 +1,7 @@
 import { Heart } from "lucide-react";
 import { IoCartOutline } from "react-icons/io5";
 
-export  function SortBySelectSkeleton() {
+export function SortBySelectSkeleton() {
   return (
     <div
       className="w-[150px] h-9 bg-gray-200 rounded-md   animate-pulse       
@@ -10,7 +10,7 @@ export  function SortBySelectSkeleton() {
   );
 }
 
-export  function GlobalSearchSkeleton() {
+export function GlobalSearchSkeleton() {
   return (
     <div
       className="
@@ -39,7 +39,7 @@ export  function GlobalSearchSkeleton() {
   );
 }
 
-export  function FiltersPanelSkeleton() {
+export function FiltersPanelSkeleton() {
   return (
     <div className="space-y-8 h-full animate-pulse">
       {/* Header Skeleton */}
@@ -189,7 +189,10 @@ export function CartItemListSkeleton() {
   return (
     <div className="space-y-6">
       {Array.from({ length: 3 }).map((_, i) => (
-        <div key={i} className="h-[120px] bg-gray-100 rounded-md animate-pulse" />
+        <div
+          key={i}
+          className="h-[120px] bg-gray-100 rounded-md animate-pulse"
+        />
       ))}
     </div>
   );
@@ -200,7 +203,6 @@ export function CartSummarySkeleton() {
     <div className="sticky top-34 p-6 min-w-[300px] shadow-sm rounded-md space-y-6 h-[600px] bg-gray-100 animate-pulse" />
   );
 }
-
 
 export function CartTriggerPlaceholder() {
   return (
@@ -220,6 +222,29 @@ export function WishlistTriggerPlaceholder() {
       <span className="size-5 flex items-center justify-center text-xs group-hover:-translate-y-1 bg-primary-accent absolute rounded-full left-6 text-white -top-2">
         0
       </span>
+    </div>
+  );
+}
+
+export function ProductCardSkeleton() {
+  return (
+    <div className="bg-white rounded-md overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+      {/* Image placeholder */}
+      <div className="aspect-square bg-gray-100 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gray-200" />
+      </div>
+
+      {/* Text section */}
+      <div className="">
+        <div className="px-4 py-4 border-b border-dashed">
+          <div className="h-6 w-3/4 bg-gray-200 rounded" />
+        </div>
+
+        <div className="px-4 py-4 flex items-center justify-between">
+          <div className="h-6 w-12 bg-gray-200 rounded" />
+          <div className="h-6 w-10 bg-gray-200 rounded" />
+        </div>
+      </div>
     </div>
   );
 }

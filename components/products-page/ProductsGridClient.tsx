@@ -2,11 +2,18 @@
 
 import { useProductFilter } from "@/lib/hooks/useProductFilter";
 import { AnimatePresence, motion } from "motion/react";
-// import ProductCard from "./ProductCard";
+
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
+import { ProductCardSkeleton } from "../shared/Skeletons";
 
 const ITEMS_PER_LOAD = 12;
+
+const ProductCard = dynamic(() => import("./ProductCard"), {
+  ssr: false, // never render on the server
+  loading: () => <ProductCardSkeleton />,
+});
 
 export default function ProductsGridClient() {
   const { products } = useProductFilter();
@@ -70,7 +77,7 @@ export default function ProductsGridClient() {
     <>
       <div className="grid gap-4 relative mt-8 px-2 grid-cols-2 lg:grid-cols-3">
         <AnimatePresence>
-          {visibleProducts.map((product, ) => (
+          {visibleProducts.map((product, index) => (
             <motion.div
               key={product.id}
               layout
@@ -79,7 +86,7 @@ export default function ProductsGridClient() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
             >
-              {/* <ProductCard index={index} product={product} /> */}
+              <ProductCard index={index} product={product} />
               <div className="aspect-square bg-rose-400"></div>
             </motion.div>
           ))}
