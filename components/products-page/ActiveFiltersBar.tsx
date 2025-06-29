@@ -37,6 +37,11 @@ export default function ActiveFiltersBar() {
     () => parseParamArray(searchParams.get("sizes")),
     [searchParams]
   );
+  const rawOnSale = searchParams.get("onSale");
+  const selectedCategories = useMemo(
+    () => parseParamArray(searchParams.get("categories")),
+    [searchParams]
+  );
 
   const rawQuery = searchParams.get("query")?.trim() || "";
   // Price: if both minPrice and maxPrice are present and not default,
@@ -54,8 +59,14 @@ export default function ActiveFiltersBar() {
   const DEFAULT_MIN = 0;
   const DEFAULT_MAX = 500;
   const priceIsActive = rawMin !== DEFAULT_MIN || rawMax !== DEFAULT_MAX;
+  const isOnSale = rawOnSale === "true";
 
-  //
+  // 3. a remove handler that just drops the onSale flag
+  const removeOnSale = () => {
+    const updated = new URLSearchParams(searchParams.toString());
+    updated.delete("onSale");
+    router.push(`/collections?${updated.toString()}`);
+  };
   // 2) Handler to remove exactly one value from a multi‐select param
   //
   const removeSingleValue = (key: string, valueToRemove: string) => {
@@ -95,12 +106,16 @@ export default function ActiveFiltersBar() {
     selectedGenders.length > 0 ||
     selectedColors.length > 0 ||
     selectedSizes.length > 0 ||
+    selectedCategories.length > 0 ||
     priceIsActive ||
+    isOnSale ||
     rawQuery.length > 0;
 
   if (!hasAnyFilter) {
     return (
-      <div className="border-b text-center italic border-gray-300 ">You have no active filters</div>
+      <div className="border-b text-center italic border-gray-300 ">
+        You have no active filters
+      </div>
     );
   }
 
@@ -125,6 +140,14 @@ export default function ActiveFiltersBar() {
               updated.delete("query");
               router.push(`/collections?${updated.toString()}`);
             }}
+          />
+        )}
+        {/* Render “On Sale” pill if onSale=true */}
+        {isOnSale && (
+          <ActiveFilterPill
+            key="onSale"
+            label="On Sale"
+            onClear={removeOnSale}
           />
         )}
 
@@ -165,6 +188,14 @@ export default function ActiveFiltersBar() {
             key={`size-${size}`}
             onClear={() => removeSingleValue("sizes", size)}
             label={size}
+          />
+        ))}
+        {/* Render one “pill” per selected category */}
+        {selectedCategories.map((cat) => (
+          <ActiveFilterPill
+            key={`category-${cat}`}
+            onClear={() => removeSingleValue("categories", cat)}
+            label={cat}
           />
         ))}
 

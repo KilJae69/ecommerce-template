@@ -1,4 +1,5 @@
 // app/collections/[slug]/page.tsx
+
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
@@ -12,7 +13,7 @@ import LogoFactory from "@/components/products-page/LogoFactory";
 import Ratings from "@/components/products-page/Ratings";
 import ProductInfoTabs from "@/components/products-page/ProductInfoTabs";
 import GlareCTA from "@/components/shared/GlareCTA";
-import AddToCartButton from "@/components/shared/AddToCartButton";
+
 import { dummyProducts } from "@/constants/productsDataV2";
 
 type PageProps = {
@@ -84,9 +85,9 @@ export default async function ProductPage(props: PageProps) {
               )}
             </div>
 
-            <VariantSelector slug={slug} variants={product.variants} />
+            <VariantSelector colorVariant = {colorVariant} selectedSize={selectedSize} slug={slug} variants={product.variants} product = {product} />
 
-            <div className="flex space-x-4">
+            {/* <div className="flex space-x-4">
               <AddToCartButton
           
                 productId={product.id}
@@ -98,7 +99,7 @@ export default async function ProductPage(props: PageProps) {
                 slug={product.slug}
                 brand={product.brand}
               />
-            </div>
+            </div> */}
           </div>
         </div>
 

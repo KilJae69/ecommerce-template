@@ -4,6 +4,8 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, useTransition } from "react";
 import { ProductVariant } from "@/constants/productsData";
+import AddToCartButton from "../shared/AddToCartButton";
+import { Product } from "@/constants/productsDataV2";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -12,9 +14,12 @@ function classNames(...classes: string[]) {
 type VariantSelectorProps = {
   slug: string;
   variants: ProductVariant[];
+  product:Product;
+  selectedSize:string
+  colorVariant:ProductVariant
 };
 
-export function VariantSelector({ slug, variants }: VariantSelectorProps) {
+export function VariantSelector({ slug, variants,product,selectedSize,colorVariant }: VariantSelectorProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -202,6 +207,17 @@ export function VariantSelector({ slug, variants }: VariantSelectorProps) {
           </p>
         </div>
       </div>
+       <AddToCartButton
+                      qty={quantity}
+                      productId={product.id}
+                      name={product.name}
+                      price={product.salePrice || product.price}
+                      image={colorVariant.images[0]}
+                      color={colorVariant.color}
+                      size={selectedSize}
+                      slug={product.slug}
+                      brand={product.brand}
+                    />
     </div>
   );
 }

@@ -144,7 +144,7 @@ export default function Header() {
             <div className="md:hidden">
               <NavModal />
             </div>
-            <div className="relative w-[140px] h-[80px]">
+            <Link href="/" className="relative w-[140px] h-[80px]">
               <Image
                 sizes="(min-width: 380px) 140px, calc(86.67vw - 172px)"
                 src="/logo.png"
@@ -153,7 +153,7 @@ export default function Header() {
                 priority
                 alt="logo"
               />
-            </div>
+            </Link>
             <div className="hidden md:block flex-1">
               {/* <SearchInput /> */}
               <Suspense fallback={<GlobalSearchSkeleton />}>
