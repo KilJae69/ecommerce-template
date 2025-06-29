@@ -16,7 +16,7 @@ export default function ProductCard({
   product: Product;
   index: number;
 }) {
-  console.log(product);
+  
   return (
     <Link
       href={`/collections/${product.slug}?color=${product.variants[0].color}&size=${product.variants[0].sizes[0]}`}
