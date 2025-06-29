@@ -83,7 +83,7 @@ export default function VanishingContactForm({
             >
               <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
                 <LabelInputContainer>
-                  <Label htmlFor="firstName">First Name *</Label>
+                  <Label className="pl-8" htmlFor="firstName">First Name *</Label>
                   <VanishingInput
                     {...register("firstName")}
                     id="firstName"
@@ -95,7 +95,7 @@ export default function VanishingContactForm({
                   <ErrorMessage>{errors.firstName?.message}</ErrorMessage>
                 </LabelInputContainer>
                 <LabelInputContainer>
-                  <Label htmlFor="lastName">Last Name *</Label>
+                  <Label className="pl-8" htmlFor="lastName">Last Name *</Label>
                   <VanishingInput
                     {...register("lastName")}
                     id="lastName"
@@ -110,7 +110,7 @@ export default function VanishingContactForm({
 
               <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
                 <LabelInputContainer className="mb-4">
-                  <Label htmlFor="phone">Phone (optional)</Label>
+                  <Label className="pl-8" htmlFor="phone">Phone (optional)</Label>
                   <VanishingInput
                     {...register("phone")}
                     id="phone"
@@ -127,7 +127,7 @@ export default function VanishingContactForm({
                 </LabelInputContainer>
 
                 <LabelInputContainer className="mb-4">
-                  <Label htmlFor="email">Email *</Label>
+                  <Label className="pl-8" htmlFor="email">Email *</Label>
                   <VanishingInput
                     {...register("email")}
                     id="email"
@@ -145,7 +145,7 @@ export default function VanishingContactForm({
               </div>
 
               <LabelInputContainer className="mb-8">
-                <Label htmlFor="message">Message *</Label>
+                <Label className="pl-8" htmlFor="message">Message *</Label>
                 <VanishingTextarea
                   {...register("message")}
                   id="message"

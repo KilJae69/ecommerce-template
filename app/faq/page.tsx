@@ -29,7 +29,7 @@ export default function FaqPage() {
         <div className="space-y-8 mt-12 max-w-3xl mx-auto">
           {/* Tabs list */}
           <Tabs defaultValue={faqData[0].id}>
-            <TabsList className="flex justify-between gap-4 flex-wrap w-full">
+            <TabsList className="grid grid-cols-2 md:grid-cols-4 gap-4  w-full">
               {faqData.map((category) => (
                 <TabsTrigger
                   className="text-md py-3 font-bold group relative overflow-hidden"
