@@ -101,7 +101,7 @@ export default function Header() {
               <Link href="/">
                 <div className="relative w-[140px] h-[80px]">
                   <Image
-                    src="/logo.png"
+                    src="/logo.svg"
                     className="object-contain"
                     priority
                     fill
@@ -147,7 +147,7 @@ export default function Header() {
             <Link href="/" className="relative w-[140px] h-[80px]">
               <Image
                 sizes="(min-width: 380px) 140px, calc(86.67vw - 172px)"
-                src="/logo.png"
+                src="/logo.svg"
                 className="object-contain"
                 fill
                 priority

@@ -57,7 +57,7 @@ function ModalHeader() {
         aria-label="Home"
         className="relative w-[120px] h-[40px]"
       >
-        <Image src="/logo.png" alt="Logo" className="object-contain" fill />
+        <Image src="/logo.svg" alt="Logo" className="object-contain" fill />
       </Link>
 
       <FaXmark

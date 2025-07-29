@@ -17,7 +17,7 @@ export default function Footer() {
             <div className="md:max-w-1/2">
               <div className="relative w-[140px] h-[80px] md:w-[200px] mb-4">
                 <Image
-                  src="/logo.png"
+                  src="/logo.svg"
                   className="object-contain"
                   fill
                   alt="logo"
